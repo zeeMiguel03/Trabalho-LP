@@ -44,6 +44,6 @@ int searchUser(Users users, int number);
 void insertUser(Users *users);
 void modifyUser(Users *users);
 void deleteUser(Users *users);
-void listUsers(Users users);
+
 
 #endif

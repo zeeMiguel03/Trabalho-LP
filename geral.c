@@ -88,3 +88,9 @@ void header(char *txt) {
     printf("                      %s\n", txt);
     puts("------------------------------------------------------------------------------------------");
 }
+
+void getDate(int day, int month, int year, char *msg) {
+    day = getInt(1,31,MSG_INSERT_DAY);
+    month = getInt(1,12,MSG_INSERT_MONTH);
+    year = getInt(1900,2024,MSG_INSERT_YEAR);
+}

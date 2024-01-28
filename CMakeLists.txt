@@ -12,4 +12,7 @@ add_executable(Trabalho_LP
         menus.h
         menus.c
         equipments.h
-        equipments.c)
+        equipments.c
+        listings.c
+        listings.h
+)
