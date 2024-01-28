@@ -5,7 +5,7 @@
 
 void listUsers(Users users) {
     int i;
-    for (i = 0; i < users.counterUsers; i++) {
+    for (i = 1; i < users.counterUsers; i++) {
         printf("\nUser name: %s", users.users[i].name);
         printf("\nUser acronym: %s", users.users[i].acronym);
         printf("\nUser number: %d", users.users[i].codIdentify);
@@ -18,7 +18,7 @@ void listUsers(Users users) {
 
 void listRecycling(Equipments equipments) {
     int i;
-    for (i = 0; i < equipments.counterEquipment; i++) {
+    for (i = 1; i < equipments.counterEquipment; i++) {
         if (equipments.equipments[i].state == RECYCLING) {
             printf("\n");
         }

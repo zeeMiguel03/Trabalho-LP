@@ -2,6 +2,7 @@
 #include "stdio.h"
 #include "geral.h"
 #include "user.h"
+#include "listings.h"
 
 void menuUser(Users *users) {
     int option;
@@ -21,6 +22,8 @@ void menuUser(Users *users) {
             case 4:
                 listUsers(*users);
                 break;
+            case 0:
+                menuStart(users);
         }
     } while (option != 0);
 }

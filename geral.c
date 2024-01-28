@@ -68,7 +68,7 @@ void readString(char *string, unsigned int max, char *message) {
  * @return Returns 1 if the counter is greater than zero, 0 otherwise.
  */
 int verifyCounter(int counter, char *message) {
-    if (counter > 0) {
+    if (counter > 1) {
         return 1;
     } else {
         puts(message);

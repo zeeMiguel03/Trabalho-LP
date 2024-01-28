@@ -13,7 +13,7 @@
 #include "user.h"
 
 #define MENU_MAIN "\n1 - Manage Equipment\n2 - Manage Users\n3 - View equipment historic\n4 - Listings\n5 - Search Equipment\n0 - Leave\nChoose: "
-#define MENU_MANAGE_USERS "\n1 - Create User\n2 - Modify User\n3 - Delete Users\n4 - List Users\n0 - Leave\nChoose: "
+#define MENU_MANAGE_USERS "\n1 - Create User\n2 - Modify User\n3 - Delete Users\n4 - List Users\n0 - Go back\nChoose: "
 
 void menuUser(Users *users);
 void menuStart(Users *users);
