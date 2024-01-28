@@ -10,4 +10,6 @@ add_executable(Trabalho_LP
         geral.h
         geral.c
         menus.h
-        menus.c)
+        menus.c
+        equipments.h
+        equipments.c)
