@@ -4,5 +4,6 @@
 #include "equipments.h"
 
 void listUsers(Users users);
+void listEquipments(Equipments equipments);
 
 #endif

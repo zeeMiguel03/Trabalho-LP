@@ -16,12 +16,14 @@ void listUsers(Users users) {
     }
 }
 
-void listRecycling(Equipments equipments) {
+void listEquipments(Equipments equipments) {
     int i;
     for (i = 1; i < equipments.counterEquipment; i++) {
-        if (equipments.equipments[i].state == RECYCLING) {
-            printf("\n");
-        }
+        printf("\nEquipment number: %d", equipments.equipments[i].identify);
+        printf("\nEquipment designation: %s", equipments.equipments[i].designation);
+        printf("\nEquipment category: %s", equipments.equipments[i].category);
+        printf("\n");
     }
 }
+
 

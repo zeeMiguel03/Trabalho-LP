@@ -7,10 +7,14 @@
 #define MAX_DESIGNATION 20
 
 #define MSG_GET_DESIGNATION "Insert equipment designation: "
-#define MSG_GET_CATEGORY "Choose equipment category:"
 #define MSG_GET_DATE_ACQUISITION "Insert acquisition date"
+#define MSG_GET_STATE_EQUIPMENT "Insert equipment state '1 - Operation, 2 - Maintenance, 3 - Non-Operational, 4 - Recycling': "
+#define MSG_CHOOSE_CATEGORY "Choose a category:"
+#define MSG_CREATE_CATEGORY "Insert a new category name: "
 
-#define FILE_EQUIPMENTS "file_equipment.bin"
+#define FILE_EQUIPMENTS "fileEquipment.bin"
+
+#define OPTION_CATEGORY "\n1 - Use existent category\n2 - Create a new category\n  Choose:"
 
 typedef enum {OPERATIONAL = 1, MAINTENANCE, NON_OPERATION, RECYCLING} stateEquipment;
 
@@ -30,12 +34,17 @@ typedef struct {
 }Category;
 
 typedef struct {
+    Category *categories;
+    int counterCategory, maxCategories;
+}Categories;
+
+typedef struct {
     int identify;
     char designation[MAX_DESIGNATION];
     Date acquisitionDate;
     stateEquipment state;
-    int userCode, counterCategory;
-    Category category;
+    int userCode;
+    char category[MAX_CATEGORY];
     MaintenanceHistory maintenanceHistory;
 } Equipment;
 
@@ -44,8 +53,10 @@ typedef struct {
     Equipment *equipments;
 } Equipments;
 
-void bootEquipments(Equipments *equipments);
-void saveEquipments(Equipments *equipments);
-void insertEquipment(Equipments *equipments);
+void bootEquipments(Equipments *equipments, Categories *categories);
+void saveEquipments(Equipments *equipments, Categories *categories);
+void insertEquipment(Equipments *equipments, Categories *categories);
+int listCategory(Categories *categories);
+void getCategory(Equipments *equipments, Categories *categories);
 
 #endif

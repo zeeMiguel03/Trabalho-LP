@@ -76,17 +76,15 @@ int verifyCounter(int counter, char *message) {
     }
 }
 
-/**
- * @brief Prints a header with a specified title.
- *
- * This function displays a header with a specified title in a consistent format.
- *
- * @param txt Title for the header.
- */
-void header(char *txt) {
-    puts("\n------------------------------------------------------------------------------------------");
-    printf("                      %s\n", txt);
-    puts("------------------------------------------------------------------------------------------");
+void header(char *title) {
+    printf("\n");
+    printf("##########################################################\n");
+    printf("|                                                        |\n");
+    printf("|               tracking the technology Park             |\n");
+    printf("|                                                        |\n");
+    printf("##########################################################\n");
+    printf("\n");
+    printf("                         %s\n", title);
 }
 
 void getDate(int day, int month, int year, char *msg) {
