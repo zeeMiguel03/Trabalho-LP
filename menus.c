@@ -3,7 +3,7 @@
 #include "geral.h"
 #include "user.h"
 #include "listings.h"
-
+//ss//
 void menuEquipments(Equipments *equipments, Categories *categories) {
     int option;
     do {

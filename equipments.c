@@ -88,8 +88,6 @@ void getCategory(Equipments *equipments, Categories *categories) {
         strcpy(equipments->equipments[equipments->counterEquipment].category, categories->categories[categories->counterCategory].category);
         categories->counterCategory++;
         saveEquipments(equipments, categories);
-
-        //ss//
     }
 }
 

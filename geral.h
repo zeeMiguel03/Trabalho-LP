@@ -1,6 +1,6 @@
 #ifndef TRABALHO_LP_GERAL_H
 #define TRABALHO_LP_GERAL_H
-
+//ss//
 #define INVALID_VALOR "Valor invalid!"
 
 #define MSG_INSERT_DAY "Insert day:"

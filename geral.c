@@ -40,7 +40,7 @@ int getInt(int minValor, int maxValor, char *message) {
     cleanInputBuffer();
     return valor;
 }
-
+//ss//
 /**
  * @brief Reads a string from the standard input, removing the newline character if present.
  *

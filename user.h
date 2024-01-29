@@ -1,6 +1,6 @@
 #ifndef TRABALHO_LP_USER_H
 #define TRABALHO_LP_USER_H
-
+//ss//
 #define MAX_NAME_USER 30
 #define MAX_ACRONYM_USER 5
 #define MAX_FUNCTION_USER 20

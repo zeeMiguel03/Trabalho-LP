@@ -2,7 +2,7 @@
 #include "user.h"
 #include "equipments.h"
 #include "stdio.h"
-
+//ss//
 void listUsers(Users users) {
     int i;
     for (i = 1; i < users.counterUsers; i++) {
