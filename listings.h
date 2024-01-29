@@ -3,6 +3,9 @@
 #include "user.h"
 #include "equipments.h"
 
+#define NO_EQUIPMENTS "No equipments yet!"
+#define NO_USERS "No users yet!"
+
 void listUsers(Users users);
 void listEquipments(Equipments equipments);//ss//
 

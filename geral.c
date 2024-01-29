@@ -1,10 +1,3 @@
-/**
- * @file user_management.c
- * @brief File for general functions.
- * @author José Rocha
- * @date 28/01/2024
- */
-
 #include "geral.h"
 #include "stdlib.h"
 #include "stdio.h"
@@ -88,6 +81,7 @@ void header(char *title) {
 }
 
 void getDate(int day, int month, int year, char *msg) {
+    puts(msg);
     day = getInt(1,31,MSG_INSERT_DAY);
     month = getInt(1,12,MSG_INSERT_MONTH);
     year = getInt(1900,2024,MSG_INSERT_YEAR);

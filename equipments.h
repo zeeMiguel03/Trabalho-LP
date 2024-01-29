@@ -39,13 +39,12 @@ typedef struct {
 }Categories;
 
 typedef struct {
-    int identify;
+    int identify, userCode, counterMaintenance, maxMaintenance;
     char designation[MAX_DESIGNATION];
     Date acquisitionDate;
     stateEquipment state;
-    int userCode;
     char category[MAX_CATEGORY];
-    MaintenanceHistory maintenanceHistory;
+    MaintenanceHistory *maintenanceHistory;
 } Equipment;
 
 typedef struct {

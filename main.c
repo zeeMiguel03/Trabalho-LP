@@ -15,4 +15,3 @@ int main() {
     free(equipments.equipments);
     return 0;
 }
-//ss//
