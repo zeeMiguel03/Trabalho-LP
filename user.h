@@ -1,6 +1,6 @@
 #ifndef TRABALHO_LP_USER_H
 #define TRABALHO_LP_USER_H
-//ss//
+
 #define MAX_NAME_USER 30
 #define MAX_ACRONYM_USER 5
 #define MAX_FUNCTION_USER 20
@@ -19,6 +19,7 @@
 #define MSG_SEARCH_USER "Search the user by the number:"
 
 #define MENU_MODIFY_USER "\n1 - Modify Name\n2 - Modify Acronym\n3 - Modify Function\n4 - Modify State\n0 - Leave\nChoose: "
+#define CHOOSE_INACTIVE "You can inactive the user \n1 - Inactive\n0 - Go Back!\n  Choose:"
 
 #define FILE_USER "fileUser.bin"
 
@@ -44,6 +45,6 @@ int searchUser(Users users, int number);
 void insertUser(Users *users);
 void modifyUser(Users *users);
 void deleteUser(Users *users);
-
+void modifyStateUser(Users *users, int numberUser);
 
 #endif

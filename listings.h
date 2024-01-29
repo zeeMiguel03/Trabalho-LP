@@ -10,5 +10,6 @@
 void listUsers(Users users);
 void listEquipments(Equipments equipments);
 void listMaintenance(Equipments equipments);
+int listCategory(Categories *categories);
 
 #endif

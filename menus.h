@@ -1,15 +1,6 @@
-/**
- * @file Menus.h
- * @brief Header file containing functions for various menus in the company management system.
- *
- * This file defines functions related to different menus.
- * These menus include the main start menu, user-specific menus, admin menus, and activity-related menus.
- *
- * @author José Rocha
- * @date 28-01-2024
- */
 #ifndef TRABALHO_LP_MENUS_H
 #define TRABALHO_LP_MENUS_H
+
 #include "user.h"
 #include "equipments.h"
 
@@ -21,6 +12,6 @@
 void menuEquipments(Equipments *equipments, Categories *categories);
 void menuUser(Users *users);
 void menuStart(Users *users, Categories *categories, Equipments *equipments);
+void menuList(Users *users, Equipments  *equipments);
 
 #endif
-//ss//

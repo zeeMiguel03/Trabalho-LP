@@ -14,6 +14,7 @@ void listUsers(Users users) {
             printf("\nUser code: %d", users.users[i].codIdentify);
             printf("\nUser equipment number: %d", users.users[i].numberEquipments);
             printf("\nUser function: %s", users.users[i].functionUser);
+            printf("\nUser state: %s", (users.users[i].state == ACTIVE) ? "Active" : "Inactive");
             printf("\n");
         }
     }
@@ -27,7 +28,7 @@ void listEquipments(Equipments equipments) {
             printf("\nEquipment designation: %s", equipments.equipments[i].designation);
             printf("\nEquipment category: %s", equipments.equipments[i].category);
             printf("\nEquipment acquisition date: %d/%d/%d", equipments.equipments[i].acquisitionDate.day, equipments.equipments[i].acquisitionDate.month,
-                   equipments.equipments[i].acquisitionDate.day);
+                   equipments.equipments[i].acquisitionDate.year);
             printf("\n");
         }
     }
@@ -52,6 +53,23 @@ void listMaintenance(Equipments equipments) {
             }
         }
     }
+}
+
+int listCategory(Categories *categories) {
+    int index = verifyCounter(categories->counterCategory, MSG_CREATE_CATEGORY), i;
+    if (index != 0) {
+        printf("\n-------Category List -------");
+        for (i = 1; i < categories->counterCategory; i++) {
+            printf("\n%d - %s", i, categories->categories[i].category);
+        }
+        printf("\n----------------------------");
+        return 0;
+    }
+    return -1;
+}
+
+void listFreeEquipments() {
+
 }
 
 

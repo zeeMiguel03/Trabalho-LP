@@ -97,11 +97,7 @@ void modifyUser(Users *users) {
                         strcpy(users->users[index].functionUser, newFunction);
                         break;
                     case 4:
-                        if (users->users[index].state == ACTIVE) {
-                            users->users[index].state = INACTIVE;
-                        } else {
-                            users->users[index].state = ACTIVE;
-                        }
+                        modifyStateUser(users, index);
                         break;
                     case 0:
                         break;
@@ -112,17 +108,12 @@ void modifyUser(Users *users) {
 }
 
 void deleteUser(Users *users) {
-    int verify = verifyCounter(users->counterUsers, MSG_NO_USERS), number, index, i;
-    if (verify == 1) {
+    int number, index, i, option;
+    if (verifyCounter(users->counterUsers, MSG_NO_USERS) == 1) {
         number = getInt(1, users->counterUsers, MSG_SEARCH_USER);
         index = searchUser(*users, number);
         if (index != -1) {
             if (users->users[index].numberEquipments == 0) {
-                strcpy(users->users[index].name,"");
-                strcpy(users->users[index].functionUser,"");
-                strcpy(users->users[index].acronym,"");
-                users->users[index].codIdentify = 0;
-
                 for (i = index; i < users->counterUsers - 1; i++) {
                     users->users[i] = users->users[i + 1];
                 }
@@ -130,9 +121,23 @@ void deleteUser(Users *users) {
                 saveUsers(users);
             } else {
                 puts(MSG_USER_HAVE_EQUIPMENT);
+                do {
+                    option = getInt(0, 1, CHOOSE_INACTIVE);
+                    if (option == 1) {
+                        modifyStateUser(users,index);
+                    }
+                } while (option !=0);
                 return;
             }
         }
+    }
+}
+
+void modifyStateUser(Users *users, int numberUser) {
+    if (users->users[numberUser].state == ACTIVE) {
+        users->users[numberUser].state = INACTIVE;
+    } else {
+        users->users[numberUser].state = ACTIVE;
     }
 }
 

@@ -10,13 +10,19 @@
 #define MSG_GET_DESIGNATION "Insert equipment designation: "
 #define MSG_GET_DATE_ACQUISITION "Insert acquisition date"
 #define MSG_GET_STATE_EQUIPMENT "Insert equipment state '1 - Operation, 2 - Maintenance, 3 - Non-Operational, 4 - Recycling': "
-#define MSG_CHOOSE_CATEGORY "Choose a category:"
+#define MSG_CHOOSE_CATEGORY "Choose a category by number:"
 #define MSG_CREATE_CATEGORY "Insert a new category name: "
 #define MSG_CHOOSE_EQUIPMENT "Choose a equipment to maintenance:"
+#define MSG_EQUIPMENT_DELETE "Choose a equipment to delete:"
+#define MSG_ONLY_RECYCLING "Can only delete recycling equipment's"
+#define MSG_GET_EQUIPMENT "Choose a equipment by the number:"
 
 #define MSG_GET_DATE_MAINTENANCE "Maintenance date"
 #define MSG_GET_TYPE_MAINTENANCE "Maintenance type:"
 #define MSG_GET_NOTE_MAINTENANCE "Insert a note:"
+
+#define ERROR_DEL_EQUIP "You cannot delete this equipment"
+#define SUCCESS_DEL_EQUIP "Equipment delete with success!"
 
 #define FILE_EQUIPMENTS "fileEquipment.bin"
 
@@ -63,10 +69,10 @@ typedef struct {
 void bootEquipments(Equipments *equipments, Categories *categories);
 void saveEquipments(Equipments *equipments, Categories *categories);
 void insertEquipment(Equipments *equipments, Categories *categories);
-int listCategory(Categories *categories);
 int searchEquipment(Equipments *equipments, int number);
 void bootEquipmentMaintenance(Equipments *equipments, int equipmentIndex);
 void getCategory(Equipments *equipments, Categories *categories);
 void addMaintenance(Equipments *equipments, Categories *categories);
+void removeEquipment(Equipments *equipments, Categories *categories);
 
 #endif

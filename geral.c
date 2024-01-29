@@ -2,6 +2,8 @@
 #include "stdlib.h"
 #include "stdio.h"
 #include "string.h"
+#include "user.h"
+#include "equipments.h"
 
 /**
  * @brief Clears the input buffer.
@@ -33,7 +35,7 @@ int getInt(int minValor, int maxValor, char *message) {
     cleanInputBuffer();
     return valor;
 }
-//ss//
+
 /**
  * @brief Reads a string from the standard input, removing the newline character if present.
  *
@@ -77,12 +79,21 @@ void header(char *title) {
     printf("|                                                        |\n");
     printf("##########################################################\n");
     printf("\n");
-    printf("                         %s\n", title);
+    printf("                        %s\n", title);
 }
 
-void getDate(int day, int month, int year, char *msg) {
+void getDate(int *day, int *month, int *year, char *msg) {
     puts(msg);
-    day = getInt(1,31,MSG_INSERT_DAY);
-    month = getInt(1,12,MSG_INSERT_MONTH);
-    year = getInt(1900,2024,MSG_INSERT_YEAR);
+    *day = getInt(1,31,MSG_INSERT_DAY);
+    *month = getInt(1,12,MSG_INSERT_MONTH);
+    *year = getInt(1900,2024,MSG_INSERT_YEAR);
+}
+
+void freeMemory(Users users, Equipments equipments, Categories categories) {
+    free(users.users);
+    free(categories.categories);
+    for (int i = 1; i < equipments.counterEquipment; i++) {
+        free(equipments.equipments[i].maintenanceHistory);
+    }
+    free(equipments.equipments);
 }

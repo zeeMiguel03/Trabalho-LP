@@ -1,6 +1,5 @@
 #include "equipments.h"
 #include "geral.h"
-#include "user.h"
 #include "stdlib.h"
 #include "stdio.h"
 #include "string.h"
@@ -29,7 +28,7 @@ void bootEquipments(Equipments *equipments, Categories *categories) {
     for (int i = 1; i < equipments->counterEquipment; i++) {
         fread(&equipments->equipments[i].counterMaintenance, sizeof(int), 1, file);
         fread(&equipments->equipments[i].maxMaintenance, sizeof(int), 1, file);
-        equipments->equipments[i].maintenanceHistory = (MaintenanceHistory *)malloc(sizeof(MaintenanceHistory) * equipments->equipments[equipments->counterEquipment].maxMaintenance);
+        equipments->equipments[i].maintenanceHistory = (MaintenanceHistory *)malloc(sizeof(MaintenanceHistory) * equipments->equipments[i].maxMaintenance);
         fread(equipments->equipments[i].maintenanceHistory, sizeof(MaintenanceHistory), equipments->equipments[i].counterMaintenance, file);
     }
 
@@ -61,8 +60,8 @@ void saveEquipments(Equipments *equipments, Categories *categories) {
 void insertEquipment(Equipments *equipments, Categories *categories) {
     equipments->equipments[equipments->counterEquipment].identify = equipments->counterEquipment;
     readString(equipments->equipments[equipments->counterEquipment].designation, MAX_DESIGNATION, MSG_GET_DESIGNATION);
-    getDate(equipments->equipments[equipments->counterEquipment].acquisitionDate.day, equipments->equipments[equipments->counterEquipment].acquisitionDate.month,
-            equipments->equipments[equipments->counterEquipment].acquisitionDate.year, MSG_GET_DATE_ACQUISITION);
+    getDate(&equipments->equipments[equipments->counterEquipment].acquisitionDate.day, &equipments->equipments[equipments->counterEquipment].acquisitionDate.month,
+            &equipments->equipments[equipments->counterEquipment].acquisitionDate.year, MSG_GET_DATE_ACQUISITION);
     equipments->equipments[equipments->counterEquipment].state = getInt(1, 4, MSG_GET_STATE_EQUIPMENT);
     getCategory(equipments, categories);
     bootEquipmentMaintenance(equipments, equipments->counterEquipment);
@@ -73,20 +72,7 @@ void insertEquipment(Equipments *equipments, Categories *categories) {
 void bootEquipmentMaintenance(Equipments *equipments, int equipmentIndex) {
     equipments->equipments[equipmentIndex].counterMaintenance = 1;
     equipments->equipments[equipmentIndex].maxMaintenance = 5;
-    equipments->equipments[equipmentIndex].maintenanceHistory = (MaintenanceHistory *)malloc(sizeof(MaintenanceHistory) * equipments->equipments[equipments->counterEquipment].maxMaintenance);
-}
-
-int listCategory(Categories *categories) {
-    int index = verifyCounter(categories->counterCategory, MSG_CREATE_CATEGORY), i;
-    if (index != 0) {
-        puts("-------Category List -------");
-        for (i = 1; i < categories->counterCategory; i++) {
-            printf("\n%d - %s", i, categories->categories[i].category);
-        }
-        puts("\n----------------------------");
-        return 0;
-    }
-    return -1;
+    equipments->equipments[equipmentIndex].maintenanceHistory = (MaintenanceHistory *)malloc(sizeof(MaintenanceHistory) * equipments->equipments[equipmentIndex].maxMaintenance);
 }
 
 void getCategory(Equipments *equipments, Categories *categories) {
@@ -133,9 +119,9 @@ void addMaintenance(Equipments *equipments, Categories *categories) {
     int index = searchEquipment(equipments, equipment);
     if (index != -1) {
         equipments->equipments[index].maintenanceHistory[equipments->equipments[index].counterMaintenance].movementNumber = equipments->equipments[index].counterMaintenance;
-        getDate(equipments->equipments[index].maintenanceHistory[equipments->equipments[index].counterMaintenance].date.day,
-                equipments->equipments[index].maintenanceHistory[equipments->equipments[index].counterMaintenance].date.month,
-                equipments->equipments[index].maintenanceHistory[equipments->equipments[index].counterMaintenance].date.year, MSG_GET_DATE_MAINTENANCE);
+        getDate(&equipments->equipments[index].maintenanceHistory[equipments->equipments[index].counterMaintenance].date.day,
+                &equipments->equipments[index].maintenanceHistory[equipments->equipments[index].counterMaintenance].date.month,
+                &equipments->equipments[index].maintenanceHistory[equipments->equipments[index].counterMaintenance].date.year, MSG_GET_DATE_MAINTENANCE);
         readString(equipments->equipments[index].maintenanceHistory[equipments->equipments[index].counterMaintenance].notes, MAX_NOTES_LENGTH, MSG_GET_NOTE_MAINTENANCE);
         readString(equipments->equipments[index].maintenanceHistory[equipments->equipments[index].counterMaintenance].maintenanceType, MAX_TYPE_MAIN, MSG_GET_TYPE_MAINTENANCE);
         equipments->equipments[index].counterMaintenance++;
@@ -143,3 +129,25 @@ void addMaintenance(Equipments *equipments, Categories *categories) {
     }
 }
 
+void removeEquipment(Equipments *equipments, Categories *categories) {
+    int index, optionEquip;
+    if (verifyCounter(equipments->counterEquipment, NO_EQUIPMENTS) == 1) {
+        optionEquip = getInt(1, equipments->counterEquipment, MSG_CHOOSE_EQUIPMENT);
+        index = searchEquipment(equipments, optionEquip);
+        if (index != -1) {
+            if (equipments->equipments[index].state != RECYCLING) {
+                puts(ERROR_DEL_EQUIP);
+                return;
+            } else {
+                free(equipments->equipments[index].maintenanceHistory);
+
+                for (int i = index; i < equipments->counterEquipment - 1; i++) {
+                    equipments->equipments[i] = equipments->equipments[i + 1];
+                }
+                equipments->counterEquipment--;
+                puts(SUCCESS_DEL_EQUIP);
+                saveEquipments(equipments, categories);
+            }
+        }
+    }
+}

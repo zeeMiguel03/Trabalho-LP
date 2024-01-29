@@ -1,6 +1,7 @@
 #include "user.h"
 #include "menus.h"
 #include "stdlib.h"
+#include "geral.h"
 
 int main() {
     Users users;
@@ -9,8 +10,6 @@ int main() {
     bootUsers(&users);
     bootEquipments(&equipments,&categories);
     menuStart(&users, &categories, &equipments);
-    free(users.users);
-    free(categories.categories);
-    free(equipments.equipments);
+    freeMemory(users,equipments, categories);
     return 0;
 }
