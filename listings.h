@@ -5,8 +5,10 @@
 
 #define NO_EQUIPMENTS "No equipments yet!"
 #define NO_USERS "No users yet!"
+#define NO_MAINTENANCE "This equipment don't have any maintenance!"
 
 void listUsers(Users users);
-void listEquipments(Equipments equipments);//ss//
+void listEquipments(Equipments equipments);
+void listMaintenance(Equipments equipments);
 
 #endif

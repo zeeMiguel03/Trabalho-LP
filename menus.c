@@ -3,22 +3,25 @@
 #include "geral.h"
 #include "user.h"
 #include "listings.h"
-//ss//
+
 void menuEquipments(Equipments *equipments, Categories *categories) {
     int option;
     do {
         header("Menu Equipments");
-        option = getInt(0, 4, MENU_MANAGE_EQUIPMENT);
+        option = getInt(0, 5, MENU_MANAGE_EQUIPMENT);
         switch (option) {
             case 1:
                 insertEquipment(equipments, categories);
                 break;
             case 2:
-                listEquipments(*equipments);
+                addMaintenance(equipments, categories);
                 break;
             case 3:
                 break;
             case 4:
+                break;
+            case 5:
+                listEquipments(*equipments);
                 break;
         }
     } while (option != 0);
@@ -46,6 +49,25 @@ void menuUser(Users *users) {
     } while (option != 0);
 }
 
+void menuList(Users *users, Equipments  *equipments) {
+    int option;
+    do {
+        header("Menu list's");
+        option = getInt(0, 3, MENU_LIST);
+        switch (option) {
+            case 1:
+                listMaintenance(*equipments);
+                break;
+            case 2:
+                listEquipments(*equipments);
+                break;
+            case 3:
+                listUsers(*users);
+                break;
+        }
+    } while (option != 0);
+}
+
 void menuStart(Users *users, Categories *categories, Equipments *equipments) {
     int option;
     do {
@@ -62,8 +84,10 @@ void menuStart(Users *users, Categories *categories, Equipments *equipments) {
                 menuUser(users);
                 break;
             case 3:
+                listMaintenance(*equipments);
                 break;
             case 4:
+                menuList(users,equipments);
                 break;
             case 5:
                 break;

@@ -49,12 +49,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug",
-		"source" : "C:/Users/Miguel/Documents/GitHub/Trabalho-LP"
+		"build" : "C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug",
+		"source" : "C:/Users/migue/Documents/GitHub/Trabalho-LP"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 5
+		"minor" : 6
 	}
 }

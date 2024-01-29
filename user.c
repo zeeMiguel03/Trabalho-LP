@@ -3,7 +3,7 @@
 #include "stdlib.h"
 #include "string.h"
 #include "geral.h"
-//ss////ss//
+
 void bootUsers(Users *users) {
     FILE *file = fopen(FILE_USER, "rb");
     if (file == NULL) {

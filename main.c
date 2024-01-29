@@ -1,4 +1,3 @@
-#include "stdio.h"
 #include "user.h"
 #include "menus.h"
 #include "stdlib.h"
