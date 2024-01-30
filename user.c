@@ -13,6 +13,7 @@ void bootUsers(Users *users) {
         users->users = (User *) malloc(sizeof(User) * users->maxUsers);
         fclose(file);
         return;
+
     }
     fread(&users->counterUsers, sizeof(int), 1, file);
     fread(&users->maxUsers, sizeof(int), 1, file);
@@ -24,8 +25,10 @@ void bootUsers(Users *users) {
 void saveUsers(Users *users) {
     FILE *file = fopen(FILE_USER, "wb");
     if (file == NULL) {
+        perror("Error opening file");
         exit(EXIT_FAILURE);
     }
+
     fwrite(&users->counterUsers, sizeof(int), 1, file);
     fwrite(&users->maxUsers, sizeof(int), 1, file);
     fwrite(users->users, sizeof(User), users->counterUsers, file);
@@ -38,10 +41,10 @@ void relocateUsers(Users *users) {
         if (pUser == NULL) {
             puts("Error relocating memory");
             return;
-        } else {
-            users->users = pUser;
-            users->maxUsers *= users->maxUsers;
         }
+
+        users->users = pUser;
+        users->maxUsers *= 2;
     }
 }
 
@@ -62,12 +65,15 @@ int searchUser(Users users, int number) {
 
 void insertUser(Users *users) {
     relocateUsers(users);
+
     readString(users->users[users->counterUsers].name, MAX_NAME_USER, MSG_GET_USER_NAME);
     readString(users->users[users->counterUsers].acronym, MAX_ACRONYM_USER, MSG_GET_USER_ACRONYM);
     readString(users->users[users->counterUsers].functionUser, MAX_FUNCTION_USER, MSG_GET_USER_FUNCTION);
+
     users->users[users->counterUsers].codIdentify = users->counterUsers;
     users->users[users->counterUsers].numberEquipments = 0;
     users->users[users->counterUsers].state = ACTIVE;
+
     users->counterUsers++;
     saveUsers(users);
 }
