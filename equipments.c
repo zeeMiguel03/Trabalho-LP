@@ -3,14 +3,15 @@
 #include "stdio.h"
 #include "string.h"
 #include "listings.h"
+#include "search.h"
 
 void bootEquipments(Equipments *equipments, Categories *categories) {
     FILE *file = fopen(FILE_EQUIPMENTS, "rb");
     if (file == NULL) {
         file = fopen(FILE_EQUIPMENTS, "wb");
-        equipments->counterEquipment = 1;
+        equipments->counterEquipment = BEGIN_COUNTER;
         equipments->maxEquipments = 5;
-        categories->counterCategory = 1;
+        categories->counterCategory = BEGIN_COUNTER;
         categories->maxCategories = 10;
         fclose(file);
     }
@@ -24,7 +25,7 @@ void bootEquipments(Equipments *equipments, Categories *categories) {
     categories->categories = (Category*)malloc(sizeof(Category) * categories->maxCategories);
     fread(categories->categories, sizeof(Category), categories->counterCategory, file);
 
-    for (int i = 1; i < equipments->counterEquipment; i++) {
+    for (int i = BEGIN_COUNTER; i < equipments->counterEquipment; i++) {
         fread(&equipments->equipments[i].counterMaintenance, sizeof(int), 1, file);
         fread(&equipments->equipments[i].maxMaintenance, sizeof(int), 1, file);
         equipments->equipments[i].maintenanceHistory = (MaintenanceHistory *)malloc(sizeof(MaintenanceHistory) * equipments->equipments[i].maxMaintenance);
@@ -47,7 +48,7 @@ void saveEquipments(Equipments *equipments, Categories *categories) {
     fwrite(&categories->maxCategories, sizeof(int), 1, file);
     fwrite(categories->categories, sizeof(Category), categories->counterCategory, file);
 
-    for (int i = 1; i < equipments->counterEquipment; i++) {
+    for (int i = BEGIN_COUNTER; i < equipments->counterEquipment; i++) {
         fwrite(&equipments->equipments[i].counterMaintenance, sizeof(int), 1, file);
         fwrite(&equipments->equipments[i].maxMaintenance, sizeof(int), 1, file);
         fwrite(equipments->equipments[i].maintenanceHistory, sizeof(MaintenanceHistory), equipments->equipments[i].counterMaintenance, file);
@@ -56,7 +57,45 @@ void saveEquipments(Equipments *equipments, Categories *categories) {
     fclose(file);
 }
 
+void relocateEquip(Equipments *equipments) {
+    if (equipments->maxEquipments == equipments->counterEquipment) {
+        Equipment *pEquipment = realloc(equipments->equipments, sizeof(Equipment) * (equipments->maxEquipments * 2));
+        if (pEquipment == NULL) {
+            exit(EXIT_FAILURE);
+        }
+        equipments->equipments = pEquipment;
+        equipments->maxEquipments *= 2;
+    }
+}
+
+void relocateCategories(Categories *categories) {
+    if (categories->maxCategories == categories->counterCategory) {
+        Category *pCategory = realloc(categories->categories, sizeof(Category) * (categories->maxCategories * 2));
+        if (pCategory == NULL) {
+            exit(EXIT_FAILURE);
+        }
+        categories->categories = pCategory;
+        categories->maxCategories *= 2;
+    }
+}
+
+void relocateMaintenance(Equipments *equipments) {
+    int i;
+    for (i = BEGIN_COUNTER; i < equipments->counterEquipment; i++) {
+        if (equipments->equipments[i].maxMaintenance == equipments->equipments[i].counterMaintenance) {
+            MaintenanceHistory *pMaintenance = realloc(equipments->equipments[i].maintenanceHistory, sizeof(MaintenanceHistory)
+            * (equipments->equipments[i].maxMaintenance * 2));
+            if (pMaintenance == NULL) {
+                exit(EXIT_FAILURE);
+            }
+            equipments->equipments[i].maintenanceHistory = pMaintenance;
+            equipments->equipments[i].maxMaintenance *= 2;
+        }
+    }
+}
+
 void insertEquipment(Equipments *equipments, Categories *categories) {
+    relocateEquip(equipments);
     equipments->equipments[equipments->counterEquipment].identify = equipments->counterEquipment;
     readString(equipments->equipments[equipments->counterEquipment].designation, MAX_DESIGNATION, MSG_GET_DESIGNATION);
     getDate(&equipments->equipments[equipments->counterEquipment].acquisitionDate.day, &equipments->equipments[equipments->counterEquipment].acquisitionDate.month,
@@ -79,6 +118,7 @@ void bootEquipmentMaintenance(Equipments *equipments, int equipmentIndex) {
 
 void getCategory(Equipments *equipments, Categories *categories) {
     int index = listCategory(categories), option;
+    relocateCategories(categories);
     if (index != -1) {
         option = getInt(1, 2, OPTION_CATEGORY);
         switch (option) {
@@ -101,24 +141,10 @@ void getCategory(Equipments *equipments, Categories *categories) {
     }
 }
 
-int searchEquipment(Equipments *equipments, int number) {
-    int verify = verifyCounter(equipments->counterEquipment, NO_EQUIPMENTS), i;
-    if (verify == 1) {
-        for (i = 0; i < equipments->counterEquipment; i++) {
-            if (equipments->equipments[i].identify == number) {
-                return i;
-            }
-        }
-        puts(MSG_EQUIPMENT_NOT_FOUND);
-        return -1;
-    } else {
-        return -1;
-    }
-}
-
 void addMaintenance(Equipments *equipments, Categories *categories) {
     int equipment = getInt(1, equipments->counterEquipment, MSG_CHOOSE_EQUIPMENT);
-    int index = searchEquipment(equipments, equipment);
+    int index = searchEquipmentNumber(equipments, equipment);
+    relocateMaintenance(equipments);
     if (index != -1) {
         equipments->equipments[index].maintenanceHistory[equipments->equipments[index].counterMaintenance].movementNumber = equipments->equipments[index].counterMaintenance;
         getDate(&equipments->equipments[index].maintenanceHistory[equipments->equipments[index].counterMaintenance].date.day,
@@ -135,7 +161,7 @@ void removeEquipment(Equipments *equipments, Categories *categories) {
     int index, optionEquip;
     if (verifyCounter(equipments->counterEquipment, NO_EQUIPMENTS) == 1) {
         optionEquip = getInt(1, equipments->counterEquipment, MSG_CHOOSE_EQUIPMENT);
-        index = searchEquipment(equipments, optionEquip);
+        index = searchEquipmentNumber(equipments, optionEquip);
         if (index != -1) {
             if (equipments->equipments[index].state != RECYCLING) {
                 puts(ERROR_DEL_EQUIP);
@@ -158,7 +184,7 @@ void addEquipmentUser(Users *users, Equipments *equipments, Categories *categori
     int i, getEquipment, getUser;
     if (verifyCounter(equipments->counterEquipment, NO_EQUIPMENTS) == 1) {
         if (verifyCounter(users->counterUsers, NO_USERS) == 1) {
-            for (i = 0; i < equipments->counterEquipment; i++) {
+            for (i = BEGIN_COUNTER; i < equipments->counterEquipment; i++) {
                 if (equipments->equipments[i].userIdentify == 0) {
                     printf("\nEquipment number: %d", equipments->equipments[i].identify);
                     printf("\nEquipment designation: %s", equipments->equipments[i].designation);
@@ -168,8 +194,8 @@ void addEquipmentUser(Users *users, Equipments *equipments, Categories *categori
                     printf("\n");
                 }
             }
-            getEquipment = getInt(1, equipments->counterEquipment, MSG_GET_EQUIPMENT);
-            getUser = getInt(1, users->counterUsers, MSG_CHOOSE_USER);
+            getEquipment = getInt(BEGIN_COUNTER, equipments->counterEquipment, MSG_GET_EQUIPMENT);
+            getUser = getInt(BEGIN_COUNTER, users->counterUsers, MSG_CHOOSE_USER);
             equipments->equipments[getEquipment].userIdentify = users->users[getUser].codIdentify;
             users->users[getUser].numberEquipments++;
             saveEquipments(equipments, categories);

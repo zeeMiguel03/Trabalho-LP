@@ -41,7 +41,7 @@ void readString(char *string, unsigned int max, char *message) {
 
 
 int verifyCounter(int counter, char *message) {
-    if (counter > 1) {
+    if (counter > BEGIN_COUNTER) {
         return 1;
     } else {
         puts(message);
@@ -71,7 +71,7 @@ void getDate(int *day, int *month, int *year, char *msg) {
 void freeMemory(Users users, Equipments equipments, Categories categories) {
     free(users.users);
     free(categories.categories);
-    for (int i = 1; i < equipments.counterEquipment; i++) {
+    for (int i = BEGIN_COUNTER; i < equipments.counterEquipment; i++) {
         free(equipments.equipments[i].maintenanceHistory);
     }
     free(equipments.equipments);

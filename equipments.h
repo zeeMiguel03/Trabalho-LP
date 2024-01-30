@@ -69,11 +69,13 @@ typedef struct {
 void bootEquipments(Equipments *equipments, Categories *categories);
 void saveEquipments(Equipments *equipments, Categories *categories);
 void insertEquipment(Equipments *equipments, Categories *categories);
-int searchEquipment(Equipments *equipments, int number);
 void bootEquipmentMaintenance(Equipments *equipments, int equipmentIndex);
 void getCategory(Equipments *equipments, Categories *categories);
 void addMaintenance(Equipments *equipments, Categories *categories);
 void removeEquipment(Equipments *equipments, Categories *categories);
 void addEquipmentUser(Users *users, Equipments *equipments, Categories *categories);
+void relocateEquip(Equipments *equipments);
+void relocateCategories(Categories *categories);
+void relocateMaintenance(Equipments *equipments);
 
 #endif

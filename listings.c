@@ -4,11 +4,12 @@
 #include "stdio.h"
 #include "geral.h"
 #include "string.h"
+#include "search.h"
 
 void listUsers(Users users) {
     int i;
     if (verifyCounter(users.counterUsers, NO_USERS) == 1) {
-        for (i = 1; i < users.counterUsers; i++) {
+        for (i = BEGIN_COUNTER; i < users.counterUsers; i++) {
             printf("\nUser name: %s", users.users[i].name);
             printf("\nUser acronym: %s", users.users[i].acronym);
             printf("\nUser number: %d", users.users[i].codIdentify);
@@ -24,7 +25,7 @@ void listUsers(Users users) {
 void listEquipments(Equipments equipments) {
     int i;
     if (verifyCounter(equipments.counterEquipment, NO_EQUIPMENTS) == 1) {
-        for (i = 1; i < equipments.counterEquipment; i++) {
+        for (i = BEGIN_COUNTER; i < equipments.counterEquipment; i++) {
             printf("\nEquipment number: %d", equipments.equipments[i].identify);
             printf("\nEquipment designation: %s", equipments.equipments[i].designation);
             printf("\nEquipment category: %s", equipments.equipments[i].category);
@@ -39,10 +40,10 @@ void listMaintenance(Equipments equipments) {
     int i, equipment, index;
     if (verifyCounter(equipments.counterEquipment, NO_EQUIPMENTS) == 1) {
         equipment = getInt(1, equipments.counterEquipment, MSG_CHOOSE_EQUIPMENT);
-        index = searchEquipment(&equipments, equipment);
+        index = searchEquipmentNumber(&equipments, equipment);
         if (index != -1) {
             if (verifyCounter(equipments.equipments[index].counterMaintenance, NO_MAINTENANCE) == 1) {
-                for (i = 1; i < equipments.equipments[index].counterMaintenance; i++) {
+                for (i = BEGIN_COUNTER; i < equipments.equipments[index].counterMaintenance; i++) {
                     printf("\nMaintenance number: %d", equipments.equipments[index].maintenanceHistory[i].movementNumber);
                     printf("\nMaintenance type: %s", equipments.equipments[index].maintenanceHistory[i].maintenanceType);
                     printf("\nMaintenance Note: %s", equipments.equipments[index].maintenanceHistory[i].notes);
@@ -60,7 +61,7 @@ int listCategory(Categories *categories) {
     int i;
     if (verifyCounter(categories->counterCategory, MSG_CREATE_CATEGORY) != 0) {
         printf("\n-------Category List -------");
-        for (i = 1; i < categories->counterCategory; i++) {
+        for (i = BEGIN_COUNTER; i < categories->counterCategory; i++) {
             printf("\n%d - %s", i, categories->categories[i].category);
         }
         printf("\n----------------------------");
@@ -76,10 +77,10 @@ void listFreeEquipments(Equipments *equipments, Users *users, Categories *catego
         if (verifyCounter(users->counterUsers, NO_USERS) == 1) {
             printf("\n------- Free Equipments by Category -------\n");
 
-            for (j = 1; j < categories->counterCategory; j++) {
+            for (j = BEGIN_COUNTER; j < categories->counterCategory; j++) {
                 printf("\nCategory: %s", categories->categories[j].category);
 
-                for (i = 1; i < equipments->counterEquipment; i++) {
+                for (i = BEGIN_COUNTER; i < equipments->counterEquipment; i++) {
                     if (strcmp(equipments->equipments[i].category, categories->categories[j].category) == 0 &&
                         equipments->equipments[i].userIdentify == 0) {
                         printf("\nEquipment number: %d", equipments->equipments[i].identify);

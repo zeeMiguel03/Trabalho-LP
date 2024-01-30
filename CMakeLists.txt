@@ -15,4 +15,7 @@ add_executable(Trabalho_LP
         equipments.c
         listings.c
         listings.h
+        search.c
+        search.h
+        search.h
 )
