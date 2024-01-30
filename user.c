@@ -4,6 +4,14 @@
 #include "string.h"
 #include "geral.h"
 
+/**
+ * @brief Initialize or load user data from the file.
+ *
+ * This function checks if the user file exists. If it does, it loads user data from the file.
+ * If the file does not exist, it creates a new file and initializes the Users structure.
+ *
+ * @param users Pointer to the Users structure to be initialized or loaded.
+ */
 void bootUsers(Users *users) {
     FILE *file = fopen(FILE_USER, "rb");
     if (file == NULL) {
@@ -22,6 +30,14 @@ void bootUsers(Users *users) {
     fclose(file);
 }
 
+/**
+ * @brief Save user data to the file.
+ *
+ * This function saves user data, including the counter of users, the maximum number of users,
+ * and the array of users, to the user file.
+ *
+ * @param users Pointer to the Users structure containing user information to be saved.
+ */
 void saveUsers(Users *users) {
     FILE *file = fopen(FILE_USER, "wb");
     if (file == NULL) {
@@ -35,6 +51,14 @@ void saveUsers(Users *users) {
     fclose(file);
 }
 
+/**
+ * @brief Relocate memory for the Users structure if necessary.
+ *
+ * This function checks if the maximum number of users has been reached.
+ * If so, it reallocates memory to accommodate more users by doubling the capacity.
+ *
+ * @param users Pointer to the Users structure whose memory may need to be relocated.
+ */
 void relocateUsers(Users *users) {
     if (users->maxUsers == users->counterUsers) {
         User *pUser = realloc(users->users, sizeof(User) * (users->maxUsers * 2));
@@ -48,6 +72,17 @@ void relocateUsers(Users *users) {
     }
 }
 
+/**
+ * @brief Search for a user in the Users structure by code identification number.
+ *
+ * This function searches for a user with the specified code identification number
+ * in the given Users structure. If the user is found, it returns the index of the user;
+ * otherwise, it returns -1 and prints an error message.
+ *
+ * @param users The Users structure containing user information.
+ * @param number The code identification number of the user to search for.
+ * @return The index of the user if found; otherwise, -1.
+ */
 int searchUser(Users users, int number) {
     int verify = verifyCounter(users.counterUsers, MSG_NO_USERS), i;
     if (verify == 1) {
@@ -63,6 +98,15 @@ int searchUser(Users users, int number) {
     }
 }
 
+/**
+ * @brief Inserts a new user into the Users structure.
+ *
+ * This function inserts a new user into the Users structure, prompting the user
+ * for information such as name, acronym, and function. It initializes other user properties
+ * like code identification, the number of equipments, and the initial state.
+ *
+ * @param users Pointer to the Users structure containing user information.
+ */
 void insertUser(Users *users) {
     relocateUsers(users);
 
@@ -78,6 +122,14 @@ void insertUser(Users *users) {
     saveUsers(users);
 }
 
+/**
+ * @brief Modifies user information in the Users structure.
+ *
+ * This function allows the modification of various aspects of a user's information,
+ * such as name, acronym, function, and state.
+ *
+ * @param users Pointer to the Users structure containing user information.
+ */
 void modifyUser(Users *users) {
     int number, index, option;
     int verify = verifyCounter(users->counterUsers, MSG_NO_USERS);
@@ -113,6 +165,15 @@ void modifyUser(Users *users) {
     }
 }
 
+/**
+ * @brief Deletes a user from the Users structure.
+ *
+ * This function allows the deletion of a user from the Users structure.
+ * It prompts the user to choose a user to delete, checks if the user has any equipment,
+ * and performs the deletion if conditions are met.
+ *
+ * @param users Pointer to the Users structure containing user information.
+ */
 void deleteUser(Users *users) {
     int number, index, i, option;
     if (verifyCounter(users->counterUsers, MSG_NO_USERS) == 1) {
@@ -139,6 +200,15 @@ void deleteUser(Users *users) {
     }
 }
 
+/**
+ * @brief Toggle the state of a user between ACTIVE and INACTIVE.
+ *
+ * This function modifies the state of a user in the given Users structure.
+ * If the user's current state is ACTIVE, it will be changed to INACTIVE, and vice versa.
+ *
+ * @param users Pointer to the Users structure containing user information.
+ * @param numberUser Index of the user in the users array to be modified.
+ */
 void modifyStateUser(Users *users, int numberUser) {
     if (users->users[numberUser].state == ACTIVE) {
         users->users[numberUser].state = INACTIVE;
