@@ -1,8 +1,8 @@
+#include "user.h"
 #ifndef TRABALHO_LP_EQUIPMENTS_H
 #define TRABALHO_LP_EQUIPMENTS_H
 
 #define MAX_CATEGORY 20
-#define MAX_NAME_LENGTH 50
 #define MAX_NOTES_LENGTH 100
 #define MAX_DESIGNATION 20
 #define MAX_TYPE_MAIN 30
@@ -13,8 +13,7 @@
 #define MSG_CHOOSE_CATEGORY "Choose a category by number:"
 #define MSG_CREATE_CATEGORY "Insert a new category name: "
 #define MSG_CHOOSE_EQUIPMENT "Choose a equipment to maintenance:"
-#define MSG_EQUIPMENT_DELETE "Choose a equipment to delete:"
-#define MSG_ONLY_RECYCLING "Can only delete recycling equipment's"
+#define MSG_CHOOSE_USER "Choose user: "
 #define MSG_GET_EQUIPMENT "Choose a equipment by the number:"
 
 #define MSG_GET_DATE_MAINTENANCE "Maintenance date"
@@ -54,6 +53,7 @@ typedef struct {
 
 typedef struct {
     int identify, counterMaintenance, maxMaintenance;
+    int userIdentify;
     char designation[MAX_DESIGNATION];
     Date acquisitionDate;
     stateEquipment state;
@@ -74,5 +74,6 @@ void bootEquipmentMaintenance(Equipments *equipments, int equipmentIndex);
 void getCategory(Equipments *equipments, Categories *categories);
 void addMaintenance(Equipments *equipments, Categories *categories);
 void removeEquipment(Equipments *equipments, Categories *categories);
+void addEquipmentUser(Users *users, Equipments *equipments, Categories *categories);
 
 #endif

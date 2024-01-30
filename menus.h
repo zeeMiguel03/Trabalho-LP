@@ -9,7 +9,7 @@
 #define MENU_MANAGE_USERS "\n1 - Create User\n2 - Modify User\n3 - Delete Users\n4 - List Users\n0 - Go Back!\n  Choose: "
 #define MENU_LIST "\n1 - List maintenance\n2 - List Equipments\n3 - List users\n0 - Go Back!\n  Choose:"
 
-void menuEquipments(Equipments *equipments, Categories *categories);
+void menuEquipments(Users *users, Equipments *equipments, Categories *categories);
 void menuUser(Users *users);
 void menuStart(Users *users, Categories *categories, Equipments *equipments);
 void menuList(Users *users, Equipments  *equipments);

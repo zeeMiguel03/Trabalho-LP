@@ -14,7 +14,7 @@ void menuStart(Users *users, Categories *categories, Equipments *equipments) {
                 puts("Goodbye");
                 break;
             case 1:
-                menuEquipments(equipments,categories);
+                menuEquipments(users,equipments,categories);
                 break;
             case 2:
                 menuUser(users);
@@ -53,7 +53,7 @@ void menuUser(Users *users) {
     } while (option != 0);
 }
 
-void menuEquipments(Equipments *equipments, Categories *categories) {
+void menuEquipments(Users *users,Equipments *equipments, Categories *categories) {
     int option;
     do {
         header("Menu Equipments");
@@ -69,6 +69,7 @@ void menuEquipments(Equipments *equipments, Categories *categories) {
                 removeEquipment(equipments, categories);
                 break;
             case 4:
+                addEquipmentUser(users, equipments, categories);
                 break;
             case 5:
                 listEquipments(*equipments);

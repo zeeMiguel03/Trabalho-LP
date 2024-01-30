@@ -5,22 +5,12 @@
 #include "user.h"
 #include "equipments.h"
 
-/**
- * @brief Clears the input buffer.
- */
 void cleanInputBuffer() {
     char ch;
     while ((ch = getchar() != '\n' && ch != EOF));
 }
 
-/**
- * @brief Gets an integer value within a specific range.
- *
- * @param minValor The minimum allowed value.
- * @param maxValor The maximum allowed value.
- * @param message The message to be displayed to request input.
- * @return The integer value entered by the user within the specified range.
- */
+
 int getInt(int minValor, int maxValor, char *message) {
     int valor;
     printf(" %s", message);
@@ -36,13 +26,7 @@ int getInt(int minValor, int maxValor, char *message) {
     return valor;
 }
 
-/**
- * @brief Reads a string from the standard input, removing the newline character if present.
- *
- * @param string Pointer to the string where to store the input.
- * @param max The maximum length of the string.
- * @param message The message to be displayed to request input.
- */
+
 void readString(char *string, unsigned int max, char *message) {
     printf(" %s", message);
     if (fgets(string, max, stdin) != NULL) {
@@ -55,13 +39,7 @@ void readString(char *string, unsigned int max, char *message) {
     }
 }
 
-/**
- * @brief Verifies if the counter is greater than zero.
- *
- * @param counter The value of the counter to be checked.
- * @param message The message to be displayed if the counter is not greater than zero.
- * @return Returns 1 if the counter is greater than zero, 0 otherwise.
- */
+
 int verifyCounter(int counter, char *message) {
     if (counter > 1) {
         return 1;
@@ -89,6 +67,7 @@ void getDate(int *day, int *month, int *year, char *msg) {
     *year = getInt(1900,2024,MSG_INSERT_YEAR);
 }
 
+
 void freeMemory(Users users, Equipments equipments, Categories categories) {
     free(users.users);
     free(categories.categories);
@@ -97,3 +76,4 @@ void freeMemory(Users users, Equipments equipments, Categories categories) {
     }
     free(equipments.equipments);
 }
+

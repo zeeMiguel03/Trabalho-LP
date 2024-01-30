@@ -56,8 +56,8 @@ void listMaintenance(Equipments equipments) {
 }
 
 int listCategory(Categories *categories) {
-    int index = verifyCounter(categories->counterCategory, MSG_CREATE_CATEGORY), i;
-    if (index != 0) {
+    int i;
+    if (verifyCounter(categories->counterCategory, MSG_CREATE_CATEGORY) != 0) {
         printf("\n-------Category List -------");
         for (i = 1; i < categories->counterCategory; i++) {
             printf("\n%d - %s", i, categories->categories[i].category);
@@ -68,8 +68,7 @@ int listCategory(Categories *categories) {
     return -1;
 }
 
-void listFreeEquipments() {
 
-}
+
 
 

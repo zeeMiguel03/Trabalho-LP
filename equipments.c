@@ -1,4 +1,3 @@
-#include "equipments.h"
 #include "geral.h"
 #include "stdlib.h"
 #include "stdio.h"
@@ -63,8 +62,11 @@ void insertEquipment(Equipments *equipments, Categories *categories) {
     getDate(&equipments->equipments[equipments->counterEquipment].acquisitionDate.day, &equipments->equipments[equipments->counterEquipment].acquisitionDate.month,
             &equipments->equipments[equipments->counterEquipment].acquisitionDate.year, MSG_GET_DATE_ACQUISITION);
     equipments->equipments[equipments->counterEquipment].state = getInt(1, 4, MSG_GET_STATE_EQUIPMENT);
+    equipments->equipments[equipments->counterEquipment].userIdentify = 0;
+
     getCategory(equipments, categories);
-    bootEquipmentMaintenance(equipments, equipments->counterEquipment);
+
+    bootEquipmentMaintenance(equipments,equipments->counterEquipment);
     equipments->counterEquipment++;
     saveEquipments(equipments, categories);
 }
@@ -148,6 +150,30 @@ void removeEquipment(Equipments *equipments, Categories *categories) {
                 puts(SUCCESS_DEL_EQUIP);
                 saveEquipments(equipments, categories);
             }
+        }
+    }
+}
+
+void addEquipmentUser(Users *users, Equipments *equipments, Categories *categories) {
+    int i, getEquipment, getUser;
+    if (verifyCounter(equipments->counterEquipment, NO_EQUIPMENTS) == 1) {
+        if (verifyCounter(users->counterUsers, NO_USERS) == 1) {
+            for (i = 0; i < equipments->counterEquipment; i++) {
+                if (equipments->equipments[i].userIdentify == 0) {
+                    printf("\nEquipment number: %d", equipments->equipments[i].identify);
+                    printf("\nEquipment designation: %s", equipments->equipments[i].designation);
+                    printf("\nEquipment category: %s", equipments->equipments[i].category);
+                    printf("\nEquipment acquisition date: %d/%d/%d", equipments->equipments[i].acquisitionDate.day, equipments->equipments[i].acquisitionDate.month,
+                           equipments->equipments[i].acquisitionDate.year);
+                    printf("\n");
+                }
+            }
+            getEquipment = getInt(1, equipments->counterEquipment, MSG_GET_EQUIPMENT);
+            getUser = getInt(1, users->counterUsers, MSG_CHOOSE_USER);
+            equipments->equipments[getEquipment].userIdentify = users->users[getUser].codIdentify;
+            users->users[getUser].numberEquipments++;
+            saveEquipments(equipments, categories);
+            saveUsers(users);
         }
     }
 }

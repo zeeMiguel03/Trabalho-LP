@@ -1,6 +1,5 @@
 #include "user.h"
 #include "menus.h"
-#include "stdlib.h"
 #include "geral.h"
 
 int main() {
