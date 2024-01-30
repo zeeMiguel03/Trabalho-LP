@@ -3,6 +3,7 @@
 #include "equipments.h"
 #include "stdio.h"
 #include "geral.h"
+#include "string.h"
 
 void listUsers(Users users) {
     int i;
@@ -68,7 +69,36 @@ int listCategory(Categories *categories) {
     return -1;
 }
 
+void listFreeEquipments(Equipments *equipments, Users *users, Categories *categories) {
+    int i, counterFree = 0, j;
 
+    if (verifyCounter(equipments->counterEquipment, NO_EQUIPMENTS) == 1) {
+        if (verifyCounter(users->counterUsers, NO_USERS) == 1) {
+            printf("\n------- Free Equipments by Category -------\n");
 
+            for (j = 1; j < categories->counterCategory; j++) {
+                printf("\nCategory: %s", categories->categories[j].category);
+
+                for (i = 1; i < equipments->counterEquipment; i++) {
+                    if (strcmp(equipments->equipments[i].category, categories->categories[j].category) == 0 &&
+                        equipments->equipments[i].userIdentify == 0) {
+                        printf("\nEquipment number: %d", equipments->equipments[i].identify);
+                        printf("\nEquipment designation: %s", equipments->equipments[i].designation);
+                        printf("\nEquipment acquisition date: %d/%d/%d", equipments->equipments[i].acquisitionDate.day,
+                               equipments->equipments[i].acquisitionDate.month, equipments->equipments[i].acquisitionDate.year);
+                        printf("\n");
+                        counterFree++;
+                    }
+                }
+
+                printf("\n-------------------------------------------\n");
+            }
+
+            if (counterFree == 0) {
+                puts(NO_EQUIPMENTS_FREE);
+            }
+        }
+    }
+}
 
 

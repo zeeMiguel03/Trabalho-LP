@@ -23,7 +23,7 @@ void menuStart(Users *users, Categories *categories, Equipments *equipments) {
                 listMaintenance(*equipments);
                 break;
             case 4:
-                menuList(users,equipments);
+                menuList(users,equipments,categories);
                 break;
             case 5:
                 break;
@@ -78,11 +78,11 @@ void menuEquipments(Users *users,Equipments *equipments, Categories *categories)
     } while (option != 0);
 }
 
-void menuList(Users *users, Equipments  *equipments) {
+void menuList(Users *users, Equipments  *equipments, Categories *categories) {
     int option;
     do {
         header("Menu list's");
-        option = getInt(0, 3, MENU_LIST);
+        option = getInt(0, 4, MENU_LIST);
         switch (option) {
             case 1:
                 listMaintenance(*equipments);
@@ -92,6 +92,9 @@ void menuList(Users *users, Equipments  *equipments) {
                 break;
             case 3:
                 listUsers(*users);
+                break;
+            case 4:
+                listFreeEquipments(equipments, users, categories);
                 break;
         }
     } while (option != 0);
