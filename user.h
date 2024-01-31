@@ -14,7 +14,7 @@
 
 #define MSG_NO_USERS "No users yet!"
 #define MSG_USER_NOT_FOUND "User not founded!"
-#define MSG_USER_HAVE_EQUIPMENT "You cannot delete this user! \nYou want to inactive the user? \n1 - Yes\n2 - No\n0 - Leave"
+#define MSG_USER_HAVE_EQUIPMENT "You cannot delete this user!"
 
 #define MSG_SEARCH_USER "Search the user by the number:"
 

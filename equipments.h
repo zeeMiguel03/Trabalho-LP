@@ -21,6 +21,7 @@
 #define MSG_GET_NOTE_MAINTENANCE "Insert a note:"
 
 #define ERROR_DEL_EQUIP "You cannot delete this equipment"
+#define ERROR_USER_INACTIVE "User is not in active status. Cannot assign equipment."
 #define SUCCESS_DEL_EQUIP "Equipment delete with success!"
 
 #define FILE_EQUIPMENTS "fileEquipment.bin"

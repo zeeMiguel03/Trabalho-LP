@@ -9,6 +9,12 @@
 #define NO_EQUIPMENTS_FREE "No free equipments!"
 #define NO_EQUIPMENTS_RECYCLE "No equipments to recycle!"
 
+#define LIST_EQUIP "\n----------- Equipments List -----------"
+#define LIST_MAINTENANCE "\n----------- Maintenance Historic -----------"
+#define LIST_RECYCLE "\n----------- Recycle List -----------"
+#define LIST_CATEGORY "\n----------- Category List -----------"
+#define LIST_LINE "\n--------------------------------"
+
 void listUsers(Users users);
 void printEquipment(Equipment *equipment);
 void listRecyclingEquip(Equipments *equipments);

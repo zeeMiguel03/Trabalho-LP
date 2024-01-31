@@ -194,12 +194,18 @@ void addEquipmentUser(Users *users, Equipments *equipments, Categories *categori
                     printf("\n");
                 }
             }
+
             getEquipment = getInt(BEGIN_COUNTER, equipments->counterEquipment, MSG_GET_EQUIPMENT);
             getUser = getInt(BEGIN_COUNTER, users->counterUsers, MSG_CHOOSE_USER);
-            equipments->equipments[getEquipment].userIdentify = users->users[getUser].codIdentify;
-            users->users[getUser].numberEquipments++;
-            saveEquipments(equipments, categories);
-            saveUsers(users);
+
+            if (users->users[getUser].state == ACTIVE) {
+                equipments->equipments[getEquipment].userIdentify = users->users[getUser].codIdentify;
+                users->users[getUser].numberEquipments++;
+                saveEquipments(equipments, categories);
+                saveUsers(users);
+            } else {
+                puts(ERROR_USER_INACTIVE);
+            }
         }
     }
 }

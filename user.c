@@ -188,12 +188,10 @@ void deleteUser(Users *users) {
                 saveUsers(users);
             } else {
                 puts(MSG_USER_HAVE_EQUIPMENT);
-                do {
-                    option = getInt(0, 1, CHOOSE_INACTIVE);
-                    if (option == 1) {
-                        modifyStateUser(users,index);
-                    }
-                } while (option !=0);
+                option = getInt(0, 1, CHOOSE_INACTIVE);
+                if (option == 1) {
+                    modifyStateUser(users,index);
+                }
                 return;
             }
         }
