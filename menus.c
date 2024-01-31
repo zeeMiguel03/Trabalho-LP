@@ -3,6 +3,7 @@
 #include "geral.h"
 #include "user.h"
 #include "listings.h"
+#include "search.h"
 
 void menuStart(Users *users, Categories *categories, Equipments *equipments) {
     int option;
@@ -26,6 +27,9 @@ void menuStart(Users *users, Categories *categories, Equipments *equipments) {
                 menuList(users,equipments,categories);
                 break;
             case 5:
+                if (verifyCounter(equipments->counterEquipment, NO_EQUIPMENTS) == 1) {
+                    menuSearch(equipments);
+                }
                 break;
         }
     } while (option != 0);
@@ -96,6 +100,27 @@ void menuList(Users *users, Equipments  *equipments, Categories *categories) {
             case 4:
                 listFreeEquipments(equipments, users, categories);
                 break;
+        }
+    } while (option != 0);
+}
+
+void menuSearch(Equipments *equipments) {
+    int option;
+    do {
+        header("Menu search");
+        option = getInt(0, 4, MENU_SEARCH);
+        switch (option) {
+            case 1:
+                searchEquipmentName(equipments);
+                break;
+            case 2:
+                searchEquipmentCategory(equipments);
+                break;
+            case 3:
+                searchEquipmentState(equipments);
+                break;
+            case 4:
+                searchEquipmentDate(equipments);
         }
     } while (option != 0);
 }
