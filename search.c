@@ -39,12 +39,13 @@ int searchEquipmentNumber(Equipments *equipments, int number) {
 void searchEquipmentState(Equipments *equipments) {
     int i, counter = 0;
     stateEquipment state;
-    state = getInt(1, 3, SEARCH_BY_STATE);
+    state = getInt(1, 4, SEARCH_BY_STATE);
 
     for (i = BEGIN_COUNTER; i < equipments->counterEquipment; i++) {
         if (equipments->equipments[i].state == state) {
-                printEquipment(&equipments->equipments[i]);
-                counter++;
+            printEquipment(&equipments->equipments[i]);
+            printEquipmentRecycle(&equipments->equipments[i]);
+            counter++;
         }
     }
 
@@ -67,8 +68,8 @@ void searchEquipmentName(Equipments *equipments) {
 
     for (i = BEGIN_COUNTER; i < equipments->counterEquipment; i++) {
         if (strcmp(equipments->equipments[i].designation, name) == 0) {
-                printEquipment(&equipments->equipments[i]);
-                counter++;
+            printEquipment(&equipments->equipments[i]);
+            counter++;
         }
     }
 
@@ -91,8 +92,8 @@ void searchEquipmentCategory(Equipments *equipments) {
 
     for (i = BEGIN_COUNTER; i < equipments->counterEquipment; i++) {
         if (strcmp(equipments->equipments[i].category, category) == 0) {
-                printEquipment(&equipments->equipments[i]);
-                counter++;
+            printEquipment(&equipments->equipments[i]);
+            counter++;
         }
     }
 
@@ -100,7 +101,6 @@ void searchEquipmentCategory(Equipments *equipments) {
         printf(ERROR_SEARCH_CATEGORY);
     }
 }
-
 
 /**
  * @brief Search for equipment by date.
@@ -115,9 +115,9 @@ void searchEquipmentDate(Equipments *equipments) {
 
     for (i = BEGIN_COUNTER; i < equipments->counterEquipment; i++) {
         if (equipments->equipments[i].acquisitionDate.day == day && equipments->equipments[i].acquisitionDate.month == month &&
-                equipments->equipments[i].acquisitionDate.day) {
-                printEquipment(&equipments->equipments[i]);
-                counter++;
+            equipments->equipments[i].acquisitionDate.day) {
+            printEquipment(&equipments->equipments[i]);
+            counter++;
         }
     }
 

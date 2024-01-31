@@ -21,6 +21,7 @@ void listRecyclingEquip(Equipments *equipments);
 void listEquipments(Equipments equipments);
 void listMaintenance(Equipments equipments);
 int listCategory(Categories *categories);
+void printEquipmentRecycle(Equipment *equipment);
 void listFreeEquipments(Equipments *equipments, Users *users, Categories *categories);
 
 #endif

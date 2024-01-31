@@ -186,12 +186,7 @@ void addEquipmentUser(Users *users, Equipments *equipments, Categories *categori
         if (verifyCounter(users->counterUsers, NO_USERS) == 1) {
             for (i = BEGIN_COUNTER; i < equipments->counterEquipment; i++) {
                 if (equipments->equipments[i].userIdentify == 0) {
-                    printf("\nEquipment number: %d", equipments->equipments[i].identify);
-                    printf("\nEquipment designation: %s", equipments->equipments[i].designation);
-                    printf("\nEquipment category: %s", equipments->equipments[i].category);
-                    printf("\nEquipment acquisition date: %d/%d/%d", equipments->equipments[i].acquisitionDate.day, equipments->equipments[i].acquisitionDate.month,
-                           equipments->equipments[i].acquisitionDate.year);
-                    printf("\n");
+                    printEquipment(&equipments->equipments[i]);
                 }
             }
 
@@ -199,10 +194,14 @@ void addEquipmentUser(Users *users, Equipments *equipments, Categories *categori
             getUser = getInt(BEGIN_COUNTER, users->counterUsers, MSG_CHOOSE_USER);
 
             if (users->users[getUser].state == ACTIVE) {
-                equipments->equipments[getEquipment].userIdentify = users->users[getUser].codIdentify;
-                users->users[getUser].numberEquipments++;
-                saveEquipments(equipments, categories);
-                saveUsers(users);
+                if (equipments->equipments[getEquipment].state != RECYCLING) {
+                    equipments->equipments[getEquipment].userIdentify = users->users[getUser].codIdentify;
+                    users->users[getUser].numberEquipments++;
+                    saveEquipments(equipments, categories);
+                    saveUsers(users);
+                } else {
+                    puts(ERROR_RECYCLE_EQUIP);
+                }
             } else {
                 puts(ERROR_USER_INACTIVE);
             }

@@ -102,7 +102,7 @@ void listRecyclingEquip(Equipments *equipments) {
     if (verifyCounter(equipments->counterEquipment, NO_EQUIPMENTS) == 1) {
         for (i = BEGIN_COUNTER; i < equipments->counterEquipment; i++) {
             if (equipments->equipments[i].state == RECYCLING) {
-                printEquipment(&equipments->equipments[i]);
+                printEquipmentRecycle(&equipments->equipments[i]);
                 counter++;
             }
         }
@@ -113,21 +113,29 @@ void listRecyclingEquip(Equipments *equipments) {
     }
 }
 
-/**
- * @brief Print the details of an equipment.
- *
- * This function prints the details of an equipment, including number, designation, category, and acquisition date.
- *
- * @param equipment Pointer to the Equipment structure to be printed.
- */
+
 void printEquipment(Equipment *equipment) {
-    printf("\nEquipment number: %d", equipment->identify);
-    printf("\nEquipment designation: %s", equipment->designation);
-    printf("\nEquipment category: %s", equipment->category);
-    printf("\nEquipment acquisition date: %d/%d/%d", equipment->acquisitionDate.day, equipment->acquisitionDate.month,
-           equipment->acquisitionDate.year);
-    printf("\nEquipment state: %s", getStateString(equipment->state));
-    printf("\n");
+    if (equipment->state != RECYCLING) {
+        printf("\nEquipment number: %d", equipment->identify);
+        printf("\nEquipment designation: %s", equipment->designation);
+        printf("\nEquipment category: %s", equipment->category);
+        printf("\nEquipment acquisition date: %d/%d/%d", equipment->acquisitionDate.day, equipment->acquisitionDate.month,
+               equipment->acquisitionDate.year);
+        printf("\nEquipment state: %s", getStateString(equipment->state));
+        printf("\n");
+    }
+}
+
+void printEquipmentRecycle(Equipment *equipment) {
+    if (equipment->state == RECYCLING) {
+        printf("\nEquipment number: %d", equipment->identify);
+        printf("\nEquipment designation: %s", equipment->designation);
+        printf("\nEquipment category: %s", equipment->category);
+        printf("\nEquipment acquisition date: %d/%d/%d", equipment->acquisitionDate.day, equipment->acquisitionDate.month,
+               equipment->acquisitionDate.year);
+        printf("\nEquipment state: %s", getStateString(equipment->state));
+        printf("\n");
+    }
 }
 
 const char *getStateString(stateEquipment state) {
