@@ -26,12 +26,7 @@ void listEquipments(Equipments equipments) {
     int i;
     if (verifyCounter(equipments.counterEquipment, NO_EQUIPMENTS) == 1) {
         for (i = BEGIN_COUNTER; i < equipments.counterEquipment; i++) {
-            printf("\nEquipment number: %d", equipments.equipments[i].identify);
-            printf("\nEquipment designation: %s", equipments.equipments[i].designation);
-            printf("\nEquipment category: %s", equipments.equipments[i].category);
-            printf("\nEquipment acquisition date: %d/%d/%d", equipments.equipments[i].acquisitionDate.day, equipments.equipments[i].acquisitionDate.month,
-                   equipments.equipments[i].acquisitionDate.year);
-            printf("\n");
+            printEquipment(&equipments.equipments[i]);
         }
     }
 }
@@ -83,11 +78,7 @@ void listFreeEquipments(Equipments *equipments, Users *users, Categories *catego
                 for (i = BEGIN_COUNTER; i < equipments->counterEquipment; i++) {
                     if (strcmp(equipments->equipments[i].category, categories->categories[j].category) == 0 &&
                         equipments->equipments[i].userIdentify == 0) {
-                        printf("\nEquipment number: %d", equipments->equipments[i].identify);
-                        printf("\nEquipment designation: %s", equipments->equipments[i].designation);
-                        printf("\nEquipment acquisition date: %d/%d/%d", equipments->equipments[i].acquisitionDate.day,
-                               equipments->equipments[i].acquisitionDate.month, equipments->equipments[i].acquisitionDate.year);
-                        printf("\n");
+                        printEquipment(&equipments->equipments[i]);
                         counterFree++;
                     }
                 }
@@ -102,4 +93,49 @@ void listFreeEquipments(Equipments *equipments, Users *users, Categories *catego
     }
 }
 
+void listRecyclingEquip(Equipments *equipments) {
+    int i, counter = 0;
+    if (verifyCounter(equipments->counterEquipment, NO_EQUIPMENTS) == 1) {
+        for (i = BEGIN_COUNTER; i < equipments->counterEquipment; i++) {
+            if (equipments->equipments[i].state == RECYCLING) {
+                printEquipment(&equipments->equipments[i]);
+                counter++;
+            }
+        }
+
+        if (counter == 0) {
+            puts(NO_EQUIPMENTS_RECYCLE);
+        }
+    }
+}
+
+/**
+ * @brief Print the details of an equipment.
+ *
+ * This function prints the details of an equipment, including number, designation, category, and acquisition date.
+ *
+ * @param equipment Pointer to the Equipment structure to be printed.
+ */
+void printEquipment(Equipment *equipment) {
+    printf("\nEquipment number: %d", equipment->identify);
+    printf("\nEquipment designation: %s", equipment->designation);
+    printf("\nEquipment category: %s", equipment->category);
+    printf("\nEquipment acquisition date: %d/%d/%d", equipment->acquisitionDate.day, equipment->acquisitionDate.month,
+           equipment->acquisitionDate.year);
+    printf("\nEquipment state: %s", getStateString(equipment->state));
+    printf("\n");
+}
+
+const char *getStateString(stateEquipment state) {
+    switch (state) {
+        case OPERATIONAL:
+            return "Operational";
+        case MAINTENANCE:
+            return "Maintenance";
+        case NON_OPERATION:
+            return "Non-Operational";
+        case RECYCLING:
+            return "Recycling";
+    }
+}
 

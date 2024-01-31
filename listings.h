@@ -7,8 +7,11 @@
 #define NO_USERS "No users yet!"
 #define NO_MAINTENANCE "This equipment don't have any maintenance!"
 #define NO_EQUIPMENTS_FREE "No free equipments!"
+#define NO_EQUIPMENTS_RECYCLE "No equipments to recycle!"
 
 void listUsers(Users users);
+void printEquipment(Equipment *equipment);
+void listRecyclingEquip(Equipments *equipments);
 void listEquipments(Equipments equipments);
 void listMaintenance(Equipments equipments);
 int listCategory(Categories *categories);

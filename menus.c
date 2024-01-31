@@ -95,7 +95,7 @@ void menuList(Users *users, Equipments  *equipments, Categories *categories) {
                 listEquipments(*equipments);
                 break;
             case 3:
-                listUsers(*users);
+                listRecyclingEquip(equipments);
                 break;
             case 4:
                 listFreeEquipments(equipments, users, categories);

@@ -5,6 +5,15 @@
 #include "geral.h"
 #include "stdio.h"
 
+/**
+ * @brief Search for equipment by identification number.
+ *
+ * This function searches for an equipment in the Equipments structure by its identification number.
+ *
+ * @param equipments Pointer to the Equipments structure.
+ * @param number Identification number of the equipment to be searched.
+ * @return The index of the equipment if found, -1 if not found.
+ */
 int searchEquipmentNumber(Equipments *equipments, int number) {
     int i;
     if (verifyCounter(equipments->counterEquipment, NO_EQUIPMENTS) == 1) {
@@ -20,15 +29,13 @@ int searchEquipmentNumber(Equipments *equipments, int number) {
     }
 }
 
-void printEquipment(Equipment *equipment) {
-    printf("\nEquipment number: %d", equipment->identify);
-    printf("\nEquipment designation: %s", equipment->designation);
-    printf("\nEquipment category: %s", equipment->category);
-    printf("\nEquipment acquisition date: %d/%d/%d", equipment->acquisitionDate.day, equipment->acquisitionDate.month,
-           equipment->acquisitionDate.year);
-    printf("\n");
-}
-
+/**
+ * @brief Search for equipment by state.
+ *
+ * This function searches and prints equipment based on the specified state.
+ *
+ * @param equipments Pointer to the Equipments structure.
+ */
 void searchEquipmentState(Equipments *equipments) {
     int i, counter = 0;
     stateEquipment state;
@@ -46,6 +53,13 @@ void searchEquipmentState(Equipments *equipments) {
     }
 }
 
+/**
+ * @brief Search for equipment by name.
+ *
+ * This function searches and prints equipment based on the specified name.
+ *
+ * @param equipments Pointer to the Equipments structure.
+ */
 void searchEquipmentName(Equipments *equipments) {
     int i, counter = 0;
     char name[MAX_DESIGNATION];
@@ -63,6 +77,13 @@ void searchEquipmentName(Equipments *equipments) {
     }
 }
 
+/**
+ * @brief Search for equipment by category.
+ *
+ * This function searches and prints equipment based on the specified category.
+ *
+ * @param equipments Pointer to the Equipments structure.
+ */
 void searchEquipmentCategory(Equipments *equipments) {
     int i, counter = 0;
     char category[MAX_DESIGNATION];
@@ -80,6 +101,14 @@ void searchEquipmentCategory(Equipments *equipments) {
     }
 }
 
+
+/**
+ * @brief Search for equipment by date.
+ *
+ * This function searches and prints equipment based on the specified acquisition date.
+ *
+ * @param equipments Pointer to the Equipments structure.
+ */
 void searchEquipmentDate(Equipments *equipments) {
     int i, day, month, year, counter = 0;
     getDate(&day, &month, &year, SEARCH_BY_DATE);

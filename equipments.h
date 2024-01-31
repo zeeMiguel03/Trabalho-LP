@@ -77,5 +77,6 @@ void addEquipmentUser(Users *users, Equipments *equipments, Categories *categori
 void relocateEquip(Equipments *equipments);
 void relocateCategories(Categories *categories);
 void relocateMaintenance(Equipments *equipments);
+const char *getStateString(stateEquipment state);
 
 #endif
