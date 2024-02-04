@@ -63,7 +63,7 @@ int listCategory(Categories *categories) {
         for (i = BEGIN_COUNTER; i < categories->counterCategory; i++) {
             printf("\n%d - %s", i, categories->categories[i].category);
         }
-        printf(LIST_LINE);
+        printf("\n"LIST_LINE);
         return 0;
     }
     return -1;
@@ -74,7 +74,7 @@ void listFreeEquipments(Equipments *equipments, Users *users, Categories *catego
 
     if (verifyCounter(equipments->counterEquipment, NO_EQUIPMENTS) == 1) {
         if (verifyCounter(users->counterUsers, NO_USERS) == 1) {
-            printf("\n------- Free Equipments by Category -------\n");
+            printf(LIST_FREE_EQUIP);
 
             for (j = BEGIN_COUNTER; j < categories->counterCategory; j++) {
                 printf("\nCategory: %s", categories->categories[j].category);
@@ -87,7 +87,7 @@ void listFreeEquipments(Equipments *equipments, Users *users, Categories *catego
                     }
                 }
 
-                printf("\n-------------------------------------------\n");
+                printf("\n"LIST_LINE);
             }
 
             if (counterFree == 0) {
@@ -122,6 +122,7 @@ void printEquipment(Equipment *equipment) {
         printf("\nEquipment acquisition date: %d/%d/%d", equipment->acquisitionDate.day, equipment->acquisitionDate.month,
                equipment->acquisitionDate.year);
         printf("\nEquipment state: %s", getStateString(equipment->state));
+        printf("\nEquipment associate user: %d", equipment->userIdentify);
         printf("\n");
     }
 }

@@ -15,6 +15,7 @@ void bootEquipments(Equipments *equipments, Categories *categories) {
         categories->maxCategories = 10;
         fclose(file);
     }
+
     fread(&equipments->counterEquipment, sizeof(int), 1, file);
     fread(&equipments->maxEquipments, sizeof(int), 1, file);
     equipments->equipments = (Equipment*) malloc(sizeof(Equipment) * equipments->maxEquipments);
@@ -40,6 +41,7 @@ void saveEquipments(Equipments *equipments, Categories *categories) {
     if (file == NULL) {
         exit(EXIT_FAILURE);
     }
+
     fwrite(&equipments->counterEquipment, sizeof(int), 1, file);
     fwrite(&equipments->maxEquipments, sizeof(int), 1, file);
     fwrite(equipments->equipments, sizeof(Equipment), equipments->counterEquipment, file);
@@ -96,6 +98,7 @@ void relocateMaintenance(Equipments *equipments) {
 
 void insertEquipment(Equipments *equipments, Categories *categories) {
     relocateEquip(equipments);
+
     equipments->equipments[equipments->counterEquipment].identify = equipments->counterEquipment;
     readString(equipments->equipments[equipments->counterEquipment].designation, MAX_DESIGNATION, MSG_GET_DESIGNATION);
     getDate(&equipments->equipments[equipments->counterEquipment].acquisitionDate.day, &equipments->equipments[equipments->counterEquipment].acquisitionDate.month,
