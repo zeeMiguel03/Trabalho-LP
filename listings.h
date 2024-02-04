@@ -10,6 +10,7 @@
 #define NO_EQUIPMENTS_RECYCLE "No equipments to recycle!"
 
 #define LIST_EQUIP "\n---------------- Equipments List --------------"
+#define LIST_USERS "\n---------------- Equipments User's --------------"
 #define LIST_FREE_EQUIP "\n------- Free Equipments by Category -------"
 #define LIST_MAINTENANCE "\n---------- Maintenance Historic ----------"
 #define LIST_RECYCLE "\n----------- Recycle List -----------"

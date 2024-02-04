@@ -18,10 +18,10 @@ void cleanInputBuffer() {
 }
 
 int getInt(int minValor, int maxValor, char *message) {
-    int valor = 0, i = 0;
+    int valor, i = 0;
     char input[maxValor];
 
-    while (valor == 0) {
+    while (1) {
         printf(" %s", message);
 
         if (scanf(" %s", input) != 1) {

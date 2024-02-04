@@ -9,6 +9,7 @@
 void listUsers(Users users) {
     int i;
     if (verifyCounter(users.counterUsers, NO_USERS) == 1) {
+        printf(LIST_USERS);
         for (i = BEGIN_COUNTER; i < users.counterUsers; i++) {
             printf("\nUser name: %s", users.users[i].name);
             printf("\nUser acronym: %s", users.users[i].acronym);
@@ -19,6 +20,8 @@ void listUsers(Users users) {
             printf("\nUser state: %s", (users.users[i].state == ACTIVE) ? "Active" : "Inactive");
             printf("\n");
         }
+        printf("\nUser's number: %d\n", users.counterUsers - 1);
+        printf(LIST_LINE);
     }
 }
 
@@ -29,6 +32,7 @@ void listEquipments(Equipments equipments) {
         for (i = BEGIN_COUNTER; i < equipments.counterEquipment; i++) {
             printEquipment(&equipments.equipments[i]);
         }
+        printf("\nEquipments number: %d\n", equipments.counterEquipment - 1);
         printf(LIST_LINE);
     }
 }

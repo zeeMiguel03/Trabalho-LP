@@ -99,7 +99,8 @@ void relocateMaintenance(Equipments *equipments) {
 void insertEquipment(Equipments *equipments, Categories *categories) {
     relocateEquip(equipments);
 
-    equipments->equipments[equipments->counterEquipment].identify = equipments->counterEquipment;
+    equipments->equipments[equipments->counterEquipment].identify = verifyExistentNumber(equipments,equipments->counterEquipment);
+
     readString(equipments->equipments[equipments->counterEquipment].designation, MAX_DESIGNATION, MSG_GET_DESIGNATION);
     getDate(&equipments->equipments[equipments->counterEquipment].acquisitionDate.day, &equipments->equipments[equipments->counterEquipment].acquisitionDate.month,
             &equipments->equipments[equipments->counterEquipment].acquisitionDate.year, MSG_GET_DATE_ACQUISITION);
@@ -147,7 +148,9 @@ void getCategory(Equipments *equipments, Categories *categories) {
 void addMaintenance(Equipments *equipments, Categories *categories) {
     int equipment = getInt(1, equipments->counterEquipment, MSG_CHOOSE_EQUIPMENT);
     int index = searchEquipmentNumber(equipments, equipment);
+
     relocateMaintenance(equipments);
+    
     if (index != -1) {
         equipments->equipments[index].maintenanceHistory[equipments->equipments[index].counterMaintenance].movementNumber = equipments->equipments[index].counterMaintenance;
         getDate(&equipments->equipments[index].maintenanceHistory[equipments->equipments[index].counterMaintenance].date.day,
@@ -163,7 +166,7 @@ void addMaintenance(Equipments *equipments, Categories *categories) {
 void removeEquipment(Equipments *equipments, Categories *categories) {
     int index, optionEquip;
     if (verifyCounter(equipments->counterEquipment, NO_EQUIPMENTS) == 1) {
-        optionEquip = getInt(1, equipments->counterEquipment, MSG_CHOOSE_EQUIPMENT);
+        optionEquip = getInt(1, equipments->counterEquipment, MSG_CHOOSE_DELETE);
         index = searchEquipmentNumber(equipments, optionEquip);
         if (index != -1) {
             if (equipments->equipments[index].state != RECYCLING) {
@@ -211,3 +214,25 @@ void addEquipmentUser(Users *users, Equipments *equipments, Categories *categori
         }
     }
 }
+
+int isIdentifyInUse(Equipments *equipments, int number) {
+    for (int i = BEGIN_COUNTER; i < equipments->counterEquipment; i++) {
+        if (equipments->equipments[i].identify == number) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int verifyExistentNumber(Equipments *equipments, int number) {
+   if (isIdentifyInUse(equipments, number) == 1) {
+       do {
+           number += 1;
+       } while (isIdentifyInUse(equipments, number));
+       return number;
+   } else {
+       return number;
+   }
+}
+
+
