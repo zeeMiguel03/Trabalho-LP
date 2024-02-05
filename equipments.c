@@ -146,8 +146,12 @@ void getCategory(Equipments *equipments, Categories *categories) {
 }
 
 void addMaintenance(Equipments *equipments, Categories *categories) {
-    int equipment = getInt(1, equipments->counterEquipment, MSG_CHOOSE_EQUIPMENT);
-    int index = searchEquipmentNumber(equipments, equipment);
+    int equipment;
+    int index;
+
+    listEquipments(*equipments);
+    equipment = getInt(1, equipments->counterEquipment, MSG_CHOOSE_EQUIPMENT);
+    index = searchEquipmentNumber(equipments, equipment);
 
     relocateMaintenance(equipments);
     
@@ -166,6 +170,8 @@ void addMaintenance(Equipments *equipments, Categories *categories) {
 void removeEquipment(Equipments *equipments, Categories *categories) {
     int index, optionEquip;
     if (verifyCounter(equipments->counterEquipment, NO_EQUIPMENTS) == 1) {
+        listRecyclingEquip(equipments);
+
         optionEquip = getInt(1, equipments->counterEquipment, MSG_CHOOSE_DELETE);
         index = searchEquipmentNumber(equipments, optionEquip);
         if (index != -1) {
@@ -191,6 +197,7 @@ void addEquipmentUser(Users *users, Equipments *equipments, Categories *categori
     int i, getEquipment, getUser;
     if (verifyCounter(equipments->counterEquipment, NO_EQUIPMENTS) == 1) {
         if (verifyCounter(users->counterUsers, NO_USERS) == 1) {
+
             for (i = BEGIN_COUNTER; i < equipments->counterEquipment; i++) {
                 if (equipments->equipments[i].userIdentify == 0) {
                     printEquipment(&equipments->equipments[i]);
@@ -198,6 +205,8 @@ void addEquipmentUser(Users *users, Equipments *equipments, Categories *categori
             }
 
             getEquipment = getInt(BEGIN_COUNTER, equipments->counterEquipment, MSG_GET_EQUIPMENT);
+
+            listUsers(*users);
             getUser = getInt(BEGIN_COUNTER, users->counterUsers, MSG_CHOOSE_USER);
 
             if (searchEquipmentNumber(equipments, getEquipment) != -1) {
@@ -222,7 +231,7 @@ void addEquipmentUser(Users *users, Equipments *equipments, Categories *categori
     }
 }
 
-int isIdentifyInUse(Equipments *equipments, int number) {
+int isNumberInUse(Equipments *equipments, int number) {
     for (int i = BEGIN_COUNTER; i < equipments->counterEquipment; i++) {
         if (equipments->equipments[i].identify == number) {
             return 1;
@@ -232,10 +241,10 @@ int isIdentifyInUse(Equipments *equipments, int number) {
 }
 
 int verifyExistentNumber(Equipments *equipments, int number) {
-   if (isIdentifyInUse(equipments, number) == 1) {
+   if (isNumberInUse(equipments, number) == 1) {
        do {
            number += 1;
-       } while (isIdentifyInUse(equipments, number) == 1);
+       } while (isNumberInUse(equipments, number) == 1);
        return number;
    } else {
        return number;

@@ -3,6 +3,7 @@
 #include "stdlib.h"
 #include "string.h"
 #include "geral.h"
+#include "listings.h"
 
 /**
  * @brief Initialize or load user data from the file.
@@ -114,7 +115,7 @@ void insertUser(Users *users) {
     readString(users->users[users->counterUsers].acronym, MAX_ACRONYM_USER, MSG_GET_USER_ACRONYM);
     readString(users->users[users->counterUsers].functionUser, MAX_FUNCTION_USER, MSG_GET_USER_FUNCTION);
 
-    users->users[users->counterUsers].codIdentify = users->counterUsers;
+    users->users[users->counterUsers].codIdentify = verifyNumberUser(users, users->counterUsers);
     users->users[users->counterUsers].numberEquipments = 0;
     users->users[users->counterUsers].state = ACTIVE;
 
@@ -136,6 +137,7 @@ void modifyUser(Users *users) {
     char newName[MAX_NAME_USER], newFunction[MAX_FUNCTION_USER], newAcronym[MAX_ACRONYM_USER];
 
     if (verify == 1) {
+        listUsers(*users);
         number = getInt(1, users->counterUsers, MSG_SEARCH_USER);
         index = searchUser(*users, number);
         if (index != -1) {
@@ -177,6 +179,7 @@ void modifyUser(Users *users) {
 void deleteUser(Users *users) {
     int number, index, i, option;
     if (verifyCounter(users->counterUsers, MSG_NO_USERS) == 1) {
+        listUsers(*users);
         number = getInt(1, users->counterUsers, MSG_SEARCH_USER);
         index = searchUser(*users, number);
         if (index != -1) {
@@ -214,4 +217,27 @@ void modifyStateUser(Users *users, int numberUser) {
         users->users[numberUser].state = ACTIVE;
     }
 }
+
+int isNumberInUseUser(Users *users, int number) {
+    for (int i = BEGIN_COUNTER; i < users->counterUsers; i++) {
+        if (users->users[i].codIdentify == number) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int verifyNumberUser(Users *users, int number) {
+    if (isNumberInUseUser(users, number) == 1) {
+        do {
+            number += 1;
+        } while (isNumberInUseUser(users, number) == 1);
+        return number;
+    } else {
+        return number;
+    }
+}
+
+
+
 

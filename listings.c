@@ -153,6 +153,7 @@ void listFreeEquipments(Equipments *equipments, Users *users, Categories *catego
 void listRecyclingEquip(Equipments *equipments) {
     int i, counter = 0;
     if (verifyCounter(equipments->counterEquipment, NO_EQUIPMENTS) == 1) {
+
         for (i = BEGIN_COUNTER; i < equipments->counterEquipment; i++) {
             if (equipments->equipments[i].state == RECYCLING) {
                 printEquipmentRecycle(&equipments->equipments[i]);

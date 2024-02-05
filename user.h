@@ -46,5 +46,7 @@ void insertUser(Users *users);
 void modifyUser(Users *users);
 void deleteUser(Users *users);
 void modifyStateUser(Users *users, int numberUser);
+int isNumberInUseUser(Users *users, int number);
+int verifyNumberUser(Users *users, int number);
 
 #endif

@@ -15,7 +15,7 @@
 #define LIST_MAINTENANCE "\n---------- Maintenance Historic ----------"
 #define LIST_RECYCLE "\n----------- Recycle List -----------"
 #define LIST_CATEGORY "\n----------- Category List -----------"
-#define LIST_LINE "------------------------------------------"
+#define LIST_LINE "------------------------------------------\n"
 
 void listUsers(Users users);
 void printEquipment(Equipment *equipment);

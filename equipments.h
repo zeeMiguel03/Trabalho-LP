@@ -12,7 +12,7 @@
 #define MSG_GET_STATE_EQUIPMENT "Insert equipment state '1 - Operation, 2 - Maintenance, 3 - Non-Operational, 4 - Recycling': "
 #define MSG_CHOOSE_CATEGORY "Choose a category by number:"
 #define MSG_CREATE_CATEGORY "Insert a new category name: "
-#define MSG_CHOOSE_EQUIPMENT "Choose a equipment to maintenance:"
+#define MSG_CHOOSE_EQUIPMENT "\nChoose a equipment to maintenance:"
 #define MSG_CHOOSE_DELETE "Choose a equipment to delete:"
 #define MSG_CHOOSE_USER "Choose user: "
 #define MSG_GET_EQUIPMENT "Choose a equipment by the number:"
@@ -83,6 +83,6 @@ void relocateCategories(Categories *categories);
 void relocateMaintenance(Equipments *equipments);
 const char *getStateString(stateEquipment state);
 int verifyExistentNumber(Equipments *equipments, int number);
-int isIdentifyInUse(Equipments *equipments, int number);
+int isNumberInUse(Equipments *equipments, int number);
 
 #endif
