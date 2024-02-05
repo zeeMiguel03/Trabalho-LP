@@ -13,13 +13,12 @@
 #define LIST_USERS "\n---------------- Equipments User's --------------"
 #define LIST_FREE_EQUIP "\n------- Free Equipments by Category -------"
 #define LIST_MAINTENANCE "\n---------- Maintenance Historic ----------"
-#define LIST_RECYCLE "\n----------- Recycle List -----------"
 #define LIST_CATEGORY "\n----------- Category List -----------"
 #define LIST_LINE "------------------------------------------\n"
 
 void listUsers(Users users);
 void printEquipment(Equipment *equipment);
-void listRecyclingEquip(Equipments *equipments);
+int listRecyclingEquip(Equipments *equipments);
 void listEquipments(Equipments equipments);
 void listMaintenance(Equipments equipments);
 int listCategory(Categories *categories);

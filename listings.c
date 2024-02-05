@@ -150,7 +150,7 @@ void listFreeEquipments(Equipments *equipments, Users *users, Categories *catego
  *
  * @param equipments Pointer to the Equipments structure.
  */
-void listRecyclingEquip(Equipments *equipments) {
+int listRecyclingEquip(Equipments *equipments) {
     int i, counter = 0;
     if (verifyCounter(equipments->counterEquipment, NO_EQUIPMENTS) == 1) {
 
@@ -163,8 +163,10 @@ void listRecyclingEquip(Equipments *equipments) {
 
         if (counter == 0) {
             puts(NO_EQUIPMENTS_RECYCLE);
+            return 0;
         }
     }
+    return 1;
 }
 
 /**

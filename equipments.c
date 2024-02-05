@@ -170,7 +170,10 @@ void addMaintenance(Equipments *equipments, Categories *categories) {
 void removeEquipment(Equipments *equipments, Categories *categories) {
     int index, optionEquip;
     if (verifyCounter(equipments->counterEquipment, NO_EQUIPMENTS) == 1) {
-        listRecyclingEquip(equipments);
+
+        if (listRecyclingEquip(equipments) == 0) {
+            return;
+        }
 
         optionEquip = getInt(1, equipments->counterEquipment, MSG_CHOOSE_DELETE);
         index = searchEquipmentNumber(equipments, optionEquip);
