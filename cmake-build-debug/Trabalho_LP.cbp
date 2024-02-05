@@ -8,116 +8,114 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Trabalho_LP">
-				<Option output="C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Trabalho_LP.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug"/>
+				<Option output="C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Trabalho_LP.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="C:/Program Files/JetBrains/CLion 2023.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2023.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2023.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2023.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
-					<Add directory="/mingw/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 Trabalho_LP"/>
-					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 Trabalho_LP"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Trabalho_LP/fast">
-				<Option output="C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Trabalho_LP.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug"/>
+				<Option output="C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Trabalho_LP.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="C:/Program Files/JetBrains/CLion 2023.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2023.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2023.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2023.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
-					<Add directory="/mingw/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 Trabalho_LP/fast"/>
-					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 Trabalho_LP/fast"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/migue/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Miguel/Documents/GitHub/Trabalho-LP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/migue/Documents/GitHub/Trabalho-LP/equipments.c">
+		<Unit filename="C:/Users/Miguel/Documents/GitHub/Trabalho-LP/equipments.c">
 			<Option target="Trabalho_LP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Documents/GitHub/Trabalho-LP/equipments.h">
+		<Unit filename="C:/Users/Miguel/Documents/GitHub/Trabalho-LP/equipments.h">
 			<Option target="Trabalho_LP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Documents/GitHub/Trabalho-LP/geral.c">
+		<Unit filename="C:/Users/Miguel/Documents/GitHub/Trabalho-LP/geral.c">
 			<Option target="Trabalho_LP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Documents/GitHub/Trabalho-LP/geral.h">
+		<Unit filename="C:/Users/Miguel/Documents/GitHub/Trabalho-LP/geral.h">
 			<Option target="Trabalho_LP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Documents/GitHub/Trabalho-LP/listings.c">
+		<Unit filename="C:/Users/Miguel/Documents/GitHub/Trabalho-LP/listings.c">
 			<Option target="Trabalho_LP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Documents/GitHub/Trabalho-LP/listings.h">
+		<Unit filename="C:/Users/Miguel/Documents/GitHub/Trabalho-LP/listings.h">
 			<Option target="Trabalho_LP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Documents/GitHub/Trabalho-LP/main.c">
+		<Unit filename="C:/Users/Miguel/Documents/GitHub/Trabalho-LP/main.c">
 			<Option target="Trabalho_LP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Documents/GitHub/Trabalho-LP/menus.c">
+		<Unit filename="C:/Users/Miguel/Documents/GitHub/Trabalho-LP/menus.c">
 			<Option target="Trabalho_LP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Documents/GitHub/Trabalho-LP/menus.h">
+		<Unit filename="C:/Users/Miguel/Documents/GitHub/Trabalho-LP/menus.h">
 			<Option target="Trabalho_LP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Documents/GitHub/Trabalho-LP/search.c">
+		<Unit filename="C:/Users/Miguel/Documents/GitHub/Trabalho-LP/search.c">
 			<Option target="Trabalho_LP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Documents/GitHub/Trabalho-LP/search.h">
+		<Unit filename="C:/Users/Miguel/Documents/GitHub/Trabalho-LP/search.h">
 			<Option target="Trabalho_LP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Documents/GitHub/Trabalho-LP/user.c">
+		<Unit filename="C:/Users/Miguel/Documents/GitHub/Trabalho-LP/user.c">
 			<Option target="Trabalho_LP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Documents/GitHub/Trabalho-LP/user.h">
+		<Unit filename="C:/Users/Miguel/Documents/GitHub/Trabalho-LP/user.h">
 			<Option target="Trabalho_LP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Documents/GitHub/Trabalho-LP/CMakeLists.txt">
+		<Unit filename="C:/Users/Miguel/Documents/GitHub/Trabalho-LP/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

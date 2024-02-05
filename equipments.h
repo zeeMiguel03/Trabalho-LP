@@ -21,6 +21,7 @@
 #define MSG_GET_TYPE_MAINTENANCE "Maintenance type:"
 #define MSG_GET_NOTE_MAINTENANCE "Insert a note:"
 
+#define ERROR_ALREADY_USER "This equipment is already associated!"
 #define ERROR_DEL_EQUIP "You cannot delete this equipment!"
 #define ERROR_USER_INACTIVE "User is not in active status. Cannot assign equipment!"
 #define ERROR_RECYCLE_EQUIP "You cannot add a recycle equipment to a user!"

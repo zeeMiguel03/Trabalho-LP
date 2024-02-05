@@ -5,6 +5,16 @@
 #include "listings.h"
 #include "search.h"
 
+/**
+ * @brief Main menu function to start the program.
+ *
+ * This function displays the main menu and handles user input to navigate
+ * to different sections of the program.
+ *
+ * @param users Pointer to the Users structure.
+ * @param categories Pointer to the Categories structure.
+ * @param equipments Pointer to the Equipments structure.
+ */
 void menuStart(Users *users, Categories *categories, Equipments *equipments) {
     int option;
     do {
@@ -35,6 +45,14 @@ void menuStart(Users *users, Categories *categories, Equipments *equipments) {
     } while (option != 0);
 }
 
+/**
+ * @brief User menu function for managing user-related operations.
+ *
+ * This function displays the user menu and handles user input to perform
+ * operations such as inserting, modifying, deleting, or listing users.
+ *
+ * @param users Pointer to the Users structure.
+ */
 void menuUser(Users *users) {
     int option;
     do {
@@ -57,6 +75,17 @@ void menuUser(Users *users) {
     } while (option != 0);
 }
 
+/**
+ * @brief Equipment menu function for managing equipment-related operations.
+ *
+ * This function displays the equipment menu and handles user input to perform
+ * operations such as inserting, adding maintenance, removing, adding equipment to users,
+ * or listing equipment.
+ *
+ * @param users Pointer to the Users structure.
+ * @param equipments Pointer to the Equipments structure.
+ * @param categories Pointer to the Categories structure.
+ */
 void menuEquipments(Users *users,Equipments *equipments, Categories *categories) {
     int option;
     do {
@@ -82,6 +111,17 @@ void menuEquipments(Users *users,Equipments *equipments, Categories *categories)
     } while (option != 0);
 }
 
+/**
+ * @brief List menu function for managing various lists.
+ *
+ * This function displays the list menu and handles user input to perform
+ * operations such as listing maintenance, listing equipment, listing recycling equipment,
+ * or listing free equipment.
+ *
+ * @param users Pointer to the Users structure.
+ * @param equipments Pointer to the Equipments structure.
+ * @param categories Pointer to the Categories structure.
+ */
 void menuList(Users *users, Equipments  *equipments, Categories *categories) {
     int option;
     do {
@@ -104,6 +144,14 @@ void menuList(Users *users, Equipments  *equipments, Categories *categories) {
     } while (option != 0);
 }
 
+/**
+ * @brief Search menu function for searching equipment.
+ *
+ * This function displays the search menu and handles user input to perform
+ * operations such as searching equipment by name, category, state, or date.
+ *
+ * @param equipments Pointer to the Equipments structure.
+ */
 void menuSearch(Equipments *equipments) {
     int option;
     do {

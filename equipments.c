@@ -178,6 +178,7 @@ void removeEquipment(Equipments *equipments, Categories *categories) {
                 for (int i = index; i < equipments->counterEquipment - 1; i++) {
                     equipments->equipments[i] = equipments->equipments[i + 1];
                 }
+
                 equipments->counterEquipment--;
                 puts(SUCCESS_DEL_EQUIP);
                 saveEquipments(equipments, categories);
@@ -199,17 +200,23 @@ void addEquipmentUser(Users *users, Equipments *equipments, Categories *categori
             getEquipment = getInt(BEGIN_COUNTER, equipments->counterEquipment, MSG_GET_EQUIPMENT);
             getUser = getInt(BEGIN_COUNTER, users->counterUsers, MSG_CHOOSE_USER);
 
-            if (users->users[getUser].state == ACTIVE) {
-                if (equipments->equipments[getEquipment].state != RECYCLING) {
-                    equipments->equipments[getEquipment].userIdentify = users->users[getUser].codIdentify;
-                    users->users[getUser].numberEquipments++;
-                    saveEquipments(equipments, categories);
-                    saveUsers(users);
+            if (searchEquipmentNumber(equipments, getEquipment) != -1) {
+                if (users->users[getUser].state == ACTIVE) {
+                    if (equipments->equipments[getEquipment].state != RECYCLING) {
+                        if (equipments->equipments[getEquipment].userIdentify == 0) {
+                            equipments->equipments[getEquipment].userIdentify = users->users[getUser].codIdentify;
+                            users->users[getUser].numberEquipments++;
+                            saveEquipments(equipments, categories);
+                            saveUsers(users);
+                        } else {
+                            puts(ERROR_ALREADY_USER);
+                        }
+                    } else {
+                        puts(ERROR_RECYCLE_EQUIP);
+                    }
                 } else {
-                    puts(ERROR_RECYCLE_EQUIP);
+                    puts(ERROR_USER_INACTIVE);
                 }
-            } else {
-                puts(ERROR_USER_INACTIVE);
             }
         }
     }
@@ -228,7 +235,7 @@ int verifyExistentNumber(Equipments *equipments, int number) {
    if (isIdentifyInUse(equipments, number) == 1) {
        do {
            number += 1;
-       } while (isIdentifyInUse(equipments, number));
+       } while (isIdentifyInUse(equipments, number) == 1);
        return number;
    } else {
        return number;
