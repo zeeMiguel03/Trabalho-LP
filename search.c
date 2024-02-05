@@ -88,6 +88,7 @@ void searchEquipmentName(Equipments *equipments) {
 void searchEquipmentCategory(Equipments *equipments) {
     int i, counter = 0;
     char category[MAX_DESIGNATION];
+
     readString(category, MAX_CATEGORY, SEARCH_BY_CATEGORY);
 
     for (i = BEGIN_COUNTER; i < equipments->counterEquipment; i++) {

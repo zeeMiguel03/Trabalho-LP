@@ -17,6 +17,18 @@ void cleanInputBuffer() {
     while ((ch = getchar() != '\n' && ch != EOF));
 }
 
+/**
+ * @brief Gets an integer input within a specified range from the user.
+ *
+ * This function prompts the user with a message to input an integer value. It validates the input to ensure it is a valid integer
+ * within the specified range [minValor, maxValor]. If the input is not a valid integer or falls outside the specified range,
+ * an error message is displayed, and the user is prompted again until a valid input is provided.
+ *
+ * @param minValor The minimum valid integer value.
+ * @param maxValor The maximum valid integer value.
+ * @param message The message to be displayed as a prompt for the user.
+ * @return The valid integer value provided by the user.
+ */
 int getInt(int minValor, int maxValor, char *message) {
     int valor, i = 0;
     char input[maxValor];
@@ -53,27 +65,36 @@ int getInt(int minValor, int maxValor, char *message) {
     return valor;
 }
 
+
 /**
  * @brief Reads a string from the standard input.
  *
  * This function prompts the user with a message and reads a string from the standard input.
  * It stores the string in the provided character array and ensures that it does not exceed the specified maximum length.
- * The function handles newline characters, ensuring proper string termination.
+ * The function handles newline characters, ensuring proper string termination. If the provided string length is invalid,
+ * an error message is displayed, and the user is prompted again until a valid input is provided.
  *
  * @param string Pointer to the character array to store the input string.
  * @param max Maximum length of the input string (including the null terminator).
  * @param message The message to be displayed as a prompt for the user.
  */
 void readString(char *string, unsigned int max, char *message) {
-    printf(" %s", message);
-    if (fgets(string, max, stdin) != NULL) {
-        unsigned int len = strlen(string) - 1;
-        if (string[len] == '\n') {
-            string[len] = '\0';
-        } else {
-            cleanInputBuffer();
+    unsigned int len;
+    do {
+        printf("%s", message);
+        if (fgets(string, max , stdin) != NULL) {
+            len = strlen(string);
+            if (len > 1 && string[len - 1] == '\n') {
+                string[len - 1] = '\0';
+            } else {
+                cleanInputBuffer();
+            }
         }
-    }
+        if (len > max) {
+            puts(INVALID_VALOR);
+        }
+
+    } while (len == 0 || len == 1 || len > max);
 }
 
 /**

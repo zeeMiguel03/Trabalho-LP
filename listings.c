@@ -22,7 +22,6 @@ void listUsers(Users users) {
             printf("\nUser name: %s", users.users[i].name);
             printf("\nUser acronym: %s", users.users[i].acronym);
             printf("\nUser number: %d", users.users[i].codIdentify);
-            printf("\nUser code: %d", users.users[i].codIdentify);
             printf("\nUser equipment number: %d", users.users[i].numberEquipments);
             printf("\nUser function: %s", users.users[i].functionUser);
             printf("\nUser state: %s", (users.users[i].state == ACTIVE) ? "Active" : "Inactive");
