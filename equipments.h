@@ -6,6 +6,9 @@
 #define MAX_NOTES_LENGTH 100
 #define MAX_DESIGNATION 20
 #define MAX_TYPE_MAIN 30
+#define MAX_EQUIP 5
+#define MAX_CATE 10
+#define MAX_MANU 5
 
 #define MSG_GET_DESIGNATION "Insert equipment designation: "
 #define MSG_GET_DATE_ACQUISITION "Insert acquisition date"

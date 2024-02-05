@@ -5,14 +5,23 @@
 #include "listings.h"
 #include "search.h"
 
+/**
+ * @brief Boots the equipment data from a file or initializes a new file if not found.
+ *
+ * This function reads equipment and category data from a file or initializes a new file
+ * if not found. It populates the Equipments and Categories structures with the data.
+ *
+ * @param equipments Pointer to the Equipments structure.
+ * @param categories Pointer to the Categories structure.
+ */
 void bootEquipments(Equipments *equipments, Categories *categories) {
     FILE *file = fopen(FILE_EQUIPMENTS, "rb");
     if (file == NULL) {
         file = fopen(FILE_EQUIPMENTS, "wb");
         equipments->counterEquipment = BEGIN_COUNTER;
-        equipments->maxEquipments = 5;
+        equipments->maxEquipments = MAX_EQUIP;
         categories->counterCategory = BEGIN_COUNTER;
-        categories->maxCategories = 10;
+        categories->maxCategories = MAX_CATE;
         fclose(file);
     }
 
@@ -36,6 +45,14 @@ void bootEquipments(Equipments *equipments, Categories *categories) {
     fclose(file);
 }
 
+/**
+ * @brief Saves the equipment and category data to a file.
+ *
+ * This function saves the current state of the Equipments and Categories structures to a file.
+ *
+ * @param equipments Pointer to the Equipments structure.
+ * @param categories Pointer to the Categories structure.
+ */
 void saveEquipments(Equipments *equipments, Categories *categories) {
     FILE *file = fopen(FILE_EQUIPMENTS, "wb");
     if (file == NULL) {
@@ -59,43 +76,80 @@ void saveEquipments(Equipments *equipments, Categories *categories) {
     fclose(file);
 }
 
+/**
+ * @brief Relocates memory for the Equipments structure if necessary.
+ *
+ * This function checks if the current number of equipments has reached the maximum limit,
+ * and if so, it reallocates memory to accommodate more equipment entries.
+ *
+ * @param equipments Pointer to the Equipments structure.
+ */
 void relocateEquip(Equipments *equipments) {
     if (equipments->maxEquipments == equipments->counterEquipment) {
         Equipment *pEquipment = realloc(equipments->equipments, sizeof(Equipment) * (equipments->maxEquipments * 2));
         if (pEquipment == NULL) {
             exit(EXIT_FAILURE);
         }
+
         equipments->equipments = pEquipment;
         equipments->maxEquipments *= 2;
     }
 }
 
+/**
+ * @brief Relocates memory for the Categories structure if necessary.
+ *
+ * This function checks if the current number of categories has reached the maximum limit,
+ * and if so, it reallocates memory to accommodate more category entries.
+ *
+ * @param categories Pointer to the Categories structure.
+ */
 void relocateCategories(Categories *categories) {
     if (categories->maxCategories == categories->counterCategory) {
         Category *pCategory = realloc(categories->categories, sizeof(Category) * (categories->maxCategories * 2));
         if (pCategory == NULL) {
             exit(EXIT_FAILURE);
         }
+
         categories->categories = pCategory;
         categories->maxCategories *= 2;
     }
 }
 
+/**
+ * @brief Relocates memory for maintenance history if necessary.
+ *
+ * This function checks if the maintenance history for each equipment has reached its limit,
+ * and if so, it reallocates memory to accommodate more maintenance history entries.
+ *
+ * @param equipments Pointer to the Equipments structure.
+ */
 void relocateMaintenance(Equipments *equipments) {
     int i;
     for (i = BEGIN_COUNTER; i < equipments->counterEquipment; i++) {
         if (equipments->equipments[i].maxMaintenance == equipments->equipments[i].counterMaintenance) {
             MaintenanceHistory *pMaintenance = realloc(equipments->equipments[i].maintenanceHistory, sizeof(MaintenanceHistory)
             * (equipments->equipments[i].maxMaintenance * 2));
+
             if (pMaintenance == NULL) {
                 exit(EXIT_FAILURE);
             }
+
             equipments->equipments[i].maintenanceHistory = pMaintenance;
             equipments->equipments[i].maxMaintenance *= 2;
         }
     }
 }
 
+/**
+ * @brief Inserts a new equipment into the system.
+ *
+ * This function adds a new equipment to the Equipments structure, prompting the user for
+ * relevant information such as designation, acquisition date, state, and category.
+ *
+ * @param equipments Pointer to the Equipments structure.
+ * @param categories Pointer to the Categories structure.
+ */
 void insertEquipment(Equipments *equipments, Categories *categories) {
     relocateEquip(equipments);
 
@@ -114,15 +168,35 @@ void insertEquipment(Equipments *equipments, Categories *categories) {
     saveEquipments(equipments, categories);
 }
 
+/**
+ * @brief Initializes maintenance history for a given equipment.
+ *
+ * This function initializes the maintenance history for a specific equipment,
+ * setting the counters and allocating memory for maintenance history entries.
+ *
+ * @param equipments Pointer to the Equipments structure.
+ * @param equipmentIndex Index of the equipment for which maintenance history is being initialized.
+ */
 void bootEquipmentMaintenance(Equipments *equipments, int equipmentIndex) {
-    equipments->equipments[equipmentIndex].counterMaintenance = 1;
-    equipments->equipments[equipmentIndex].maxMaintenance = 5;
-    equipments->equipments[equipmentIndex].maintenanceHistory = (MaintenanceHistory *)malloc(sizeof(MaintenanceHistory) * equipments->equipments[equipmentIndex].maxMaintenance);
+    equipments->equipments[equipmentIndex].counterMaintenance = BEGIN_COUNTER;
+    equipments->equipments[equipmentIndex].maxMaintenance = MAX_MANU;
+    equipments->equipments[equipmentIndex].maintenanceHistory = (MaintenanceHistory *)malloc(sizeof(MaintenanceHistory) *
+            equipments->equipments[equipmentIndex].maxMaintenance);
 }
 
+/**
+ * @brief Gets the category for a new equipment.
+ *
+ * This function prompts the user to choose an existing category or create a new one
+ * for a new equipment. It then assigns the selected or created category to the equipment.
+ *
+ * @param equipments Pointer to the Equipments structure.
+ * @param categories Pointer to the Categories structure.
+ */
 void getCategory(Equipments *equipments, Categories *categories) {
     int index = listCategory(categories), option;
     relocateCategories(categories);
+
     if (index != -1) {
         option = getInt(1, 2, OPTION_CATEGORY);
         switch (option) {
@@ -145,6 +219,15 @@ void getCategory(Equipments *equipments, Categories *categories) {
     }
 }
 
+/**
+ * @brief Adds maintenance history for a specific equipment.
+ *
+ * This function adds maintenance history entries for a specific equipment, prompting
+ * the user for relevant information such as date, notes, and maintenance type.
+ *
+ * @param equipments Pointer to the Equipments structure.
+ * @param categories Pointer to the Categories structure.
+ */
 void addMaintenance(Equipments *equipments, Categories *categories) {
     int equipment;
     int index;
@@ -167,6 +250,15 @@ void addMaintenance(Equipments *equipments, Categories *categories) {
     }
 }
 
+/**
+ * @brief Removes an equipment from the system.
+ *
+ * This function removes an equipment from the Equipments structure, provided that
+ * the equipment is in the recycling state. It updates counters and saves the changes.
+ *
+ * @param equipments Pointer to the Equipments structure.
+ * @param categories Pointer to the Categories structure.
+ */
 void removeEquipment(Equipments *equipments, Categories *categories) {
     int index, optionEquip;
     if (verifyCounter(equipments->counterEquipment, NO_EQUIPMENTS) == 1) {
@@ -196,6 +288,16 @@ void removeEquipment(Equipments *equipments, Categories *categories) {
     }
 }
 
+/**
+ * @brief Adds an equipment to a specific user.
+ *
+ * This function adds an equipment to a specific user, updating counters and saving changes
+ * if conditions are met, such as the user being active and the equipment not being in recycling state.
+ *
+ * @param users Pointer to the Users structure.
+ * @param equipments Pointer to the Equipments structure.
+ * @param categories Pointer to the Categories structure.
+ */
 void addEquipmentUser(Users *users, Equipments *equipments, Categories *categories) {
     int i, getEquipment, getUser;
     if (verifyCounter(equipments->counterEquipment, NO_EQUIPMENTS) == 1) {
@@ -234,6 +336,16 @@ void addEquipmentUser(Users *users, Equipments *equipments, Categories *categori
     }
 }
 
+/**
+ * @brief Checks if a given equipment number is already in use.
+ *
+ * This function checks if a given equipment number is already in use by comparing it
+ * against existing equipment numbers in the Equipments structure.
+ *
+ * @param equipments Pointer to the Equipments structure.
+ * @param number Equipment number to check for availability.
+ * @return 1 if the number is in use, 0 otherwise.
+ */
 int isNumberInUse(Equipments *equipments, int number) {
     for (int i = BEGIN_COUNTER; i < equipments->counterEquipment; i++) {
         if (equipments->equipments[i].identify == number) {
@@ -243,6 +355,16 @@ int isNumberInUse(Equipments *equipments, int number) {
     return 0;
 }
 
+/**
+ * @brief Verifies and returns an available equipment number.
+ *
+ * This function verifies if a given equipment number is in use. If it is, it increments
+ * the number until an available number is found and returns it.
+ *
+ * @param equipments Pointer to the Equipments structure.
+ * @param number Proposed equipment number to check and modify if necessary.
+ * @return An available equipment number.
+ */
 int verifyExistentNumber(Equipments *equipments, int number) {
    if (isNumberInUse(equipments, number) == 1) {
        do {
